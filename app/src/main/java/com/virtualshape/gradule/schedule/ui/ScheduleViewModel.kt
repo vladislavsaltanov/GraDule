@@ -17,6 +17,9 @@ class ScheduleViewModel : ViewModel() {
 
     private val _lessons = MutableStateFlow<List<Lesson>>(emptyList())
     val lessons: StateFlow<List<Lesson>> = _lessons
+    private val _currentWeekType = MutableStateFlow("0")
+    val currentWeekType: StateFlow<String> = _currentWeekType
+    public var groupName: String = ""
 
     init {
         loadSchedule()
@@ -30,10 +33,18 @@ class ScheduleViewModel : ViewModel() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 val api = retrofit.create(ScheduleApi::class.java)
+
+                val weekResponse = api.getCurrentWeek()
+                val weekType = weekResponse.week.toString()
+
                 val response = api.getSchedule(116)
                 val mapped = mapToLessons(response)
 
+                val groups = api.getGroups()
+                groupName = groups.find { it.id == 116 }?.fullName ?: "Unknown"
+
                 kotlinx.coroutines.withContext(Dispatchers.Main) {
+                    _currentWeekType.value = weekType
                     _lessons.value = mapped
                 }
             } catch (e: Exception) {
