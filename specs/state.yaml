@@ -1,0 +1,16 @@
+session:
+  date: "2026-09-30"
+  active_flow: null
+  epic: null
+workflow_mode: solo-git
+vcs:
+  kind: git
+  branch: main
+environment:
+  java_system: "25 Temurin (system)"
+  daemon_toolchain: "21 (foojay)"
+  agp: "9.4.1 (uncommitted)"
+  gradle_wrapper: "9.6.0 (uncommitted)"
+handoff:
+  next_skill: elaborate-spec
+  note: "Baseline 2026-09-30: template app, dirty tree (AGP/wrapper/.idea). Decide commit vs revert, then first feature spec."
