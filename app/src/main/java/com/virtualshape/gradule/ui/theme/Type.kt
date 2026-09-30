@@ -6,29 +6,21 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Set of Material typography styles to start with
-val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+// Cascadia Code/Mono из дизайна не бандлим: +1.5 МБ APK. Моноширинный системный —
+// ближайший бесплатный аналог (см. DESIGN.md «Шрифты»).
+private val Mono = FontFamily.Monospace
+
+val GraDuleTypography =
+    Typography(
+        titleLarge = TextStyle(fontFamily = Mono, fontSize = 18.sp, fontWeight = FontWeight.Bold),
+        titleMedium = TextStyle(fontFamily = Mono, fontSize = 18.sp, fontWeight = FontWeight.SemiBold),
+        bodyMedium = TextStyle(fontFamily = Mono, fontSize = 11.sp, fontWeight = FontWeight.SemiBold),
+        bodySmall =
+            TextStyle(
+                fontFamily = Mono,
+                fontSize = 9.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Ink.copy(alpha = 0.65f),
+            ),
+        labelSmall = TextStyle(fontFamily = Mono, fontSize = 9.sp),
     )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
-)

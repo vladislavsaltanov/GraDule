@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!-- Каркас только для окна: весь UI рисует Compose. -->
     <style name="Theme.GraDule" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
