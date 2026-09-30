@@ -3,7 +3,7 @@ e00s01: pending # R1+R2: лента и Rate (ждёт токен)
 e00s02: passing # грамматика timeslot подтверждена на 60 строках, id стабильны
 e01s01: implemented # сборка+тесты зелёные, ручной прогон не делали
 e01s02: pending # разбор ссылки, DataStore, logout
-e02s01: pending # ядро: парсер + записи на дату (pure Kotlin)
+e02s01: passing # ядро: парсер timeslot, entriesOn(date), reconcile-план
 e02s02: pending # выбор группы + экран дня + подгруппы
 e03s01: pending # семестры + дисциплины + детали
 e03s02: pending # лента событий (после e00s01)

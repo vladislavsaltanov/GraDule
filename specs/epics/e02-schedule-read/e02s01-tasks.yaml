@@ -1,13 +1,13 @@
 story_id: e02s01
 title: "Ядро расписания (pure Kotlin)"
-status: failing
+status: passing
 bcps: 8
 tasks:
   - id: 1
     description: "Парсер timeslot + матчинг слотов"
     verify: "./gradlew :app:testDebugUnitTest"
     risk: P0
-    status: failing
+    status: passing
     allure:
       severity: critical
       categories: ["schedule", "unit"]
@@ -15,7 +15,7 @@ tasks:
     description: "entries-on-date + reconcile-правила"
     verify: "./gradlew :app:testDebugUnitTest"
     risk: P0
-    status: failing
+    status: passing
     allure:
       severity: critical
       categories: ["schedule", "unit"]
