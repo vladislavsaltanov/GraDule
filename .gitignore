@@ -145,3 +145,6 @@ captures/
 
 # Secrets — BRS token via .env (never commit)
 .env
+
+# pi task dock
+.pi/
