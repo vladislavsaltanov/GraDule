@@ -1,0 +1,21 @@
+story_id: e07s01
+title: "Виджет «пары сегодня»"
+status: failing
+bcps: 3
+tasks:
+  - id: 1
+    description: "Данные виджета из БД"
+    verify: "./gradlew :app:testDebugUnitTest"
+    risk: P1
+    status: failing
+    allure:
+      severity: high
+      categories: ["extras", "unit"]
+  - id: 2
+    description: "Виджет на экране + обновление"
+    verify: "./gradlew :app:assembleDebug"
+    risk: P2
+    status: failing
+    allure:
+      severity: normal
+      categories: ["extras", "ui"]

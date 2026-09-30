@@ -1,0 +1,35 @@
+id: e00
+slug: recon
+title: "Разведка W0 — фикстуры и заметки"
+stream: W0
+status: pending
+depends: []
+blocks: [e02, e03]
+decisions: []
+stories:
+  - id: e00s01
+    title: "R1+R2: лента БРС и Rate (ждёт токен)"
+    status: pending
+    waits: "токен пользователя"
+    tasks:
+      - id: e00s01t01
+        desc: "Сохранить сырой ответ events + заголовки"
+        verify: "test -f specs/fixtures/brs/events.raw"
+        status: pending
+      - id: e00s01t02
+        desc: "Сверить Rate против суммы подмодулей (Q2)"
+        verify: "test -f specs/fixtures/brs/rate-note.md"
+        status: pending
+  - id: e00s02
+    slug_note: "R3+R4+R5 без токена — стартовать первым"
+    title: "Грамматика schedule + стабильность id"
+    status: pending
+    tasks:
+      - id: e00s02t01
+        desc: "Снять grade/list, forGrade, schedule, time, week"
+        verify: "test -f specs/fixtures/schedule/group-116.json"
+        status: pending
+      - id: e00s02t02
+        desc: "Заметка: W-база, якорь чётности, subnum, ctype (Q3-Q8)"
+        verify: "test -f specs/fixtures/schedule/grammar-note.md"
+        status: pending

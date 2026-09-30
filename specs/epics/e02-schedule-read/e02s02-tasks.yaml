@@ -1,0 +1,21 @@
+story_id: e02s02
+title: "Выбор группы + экран дня"
+status: failing
+bcps: 5
+tasks:
+  - id: 1
+    description: "Group-resolve + загрузка + замена SERVER"
+    verify: "./gradlew :app:testDebugUnitTest"
+    risk: P0
+    status: failing
+    allure:
+      severity: critical
+      categories: ["schedule", "unit", "integration"]
+  - id: 2
+    description: "Экран дня + подгруппы + состояния"
+    verify: "./gradlew :app:assembleDebug"
+    risk: P1
+    status: failing
+    allure:
+      severity: high
+      categories: ["schedule", "ui"]

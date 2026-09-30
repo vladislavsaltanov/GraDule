@@ -1,0 +1,18 @@
+id: e06
+slug: notify
+title: "Фон W9 (poll)"
+stream: W9
+status: pending
+depends: [e03]
+blocks: []
+decisions: ["gradule-notify"]
+stories:
+  - id: e06s01
+    title: "WorkManager-опрос + уведомления без повторов"
+    status: pending
+    waits: "e03s02 (лента как триггер)"
+    tasks:
+      - id: e06s01t01
+        desc: "Периодический синк, дифф баллов, no-dup"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending

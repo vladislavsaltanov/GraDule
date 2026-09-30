@@ -1,0 +1,21 @@
+story_id: e04s02
+title: "Оверрайды серверных (b)"
+status: failing
+bcps: 3
+tasks:
+  - id: 1
+    description: "Таблица + применение при чтении"
+    verify: "./gradlew :app:testDebugUnitTest"
+    risk: P1
+    status: failing
+    allure:
+      severity: high
+      categories: ["entries", "unit"]
+  - id: 2
+    description: "Конфликт по хэшу + UI-маркер"
+    verify: "./gradlew :app:testDebugUnitTest"
+    risk: P1
+    status: failing
+    allure:
+      severity: high
+      categories: ["entries", "unit", "ui"]

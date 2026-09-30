@@ -1,0 +1,21 @@
+story_id: e06s01
+title: "WorkManager-опрос и уведомления"
+status: failing
+bcps: 5
+tasks:
+  - id: 1
+    description: "Воркер + дифф + дедуп"
+    verify: "./gradlew :app:testDebugUnitTest"
+    risk: P0
+    status: failing
+    allure:
+      severity: critical
+      categories: ["notify", "unit"]
+  - id: 2
+    description: "Ручной прогон уведомления"
+    verify: "./gradlew :app:assembleDebug"
+    risk: P1
+    status: failing
+    allure:
+      severity: high
+      categories: ["notify", "manual"]

@@ -1,0 +1,29 @@
+id: e05
+slug: exchange
+title: "Обмен W7 (клиент + сервер)"
+stream: W7
+status: pending
+depends: [e04]
+blocks: []
+decisions: ["gradule-export-all", "gradule-server-todo"]
+stories:
+  - id: e05s01
+    title: "Схема v1 + сервер (random id, TTL, лимиты)"
+    status: pending
+    tasks:
+      - id: e05s01t01
+        desc: "Экспорт ALL (FULL + ONE_OFF), контракт API"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending
+      - id: e05s01t02
+        desc: "Flask: token_urlsafe(16), TTL 6 мес, 5/10мин"
+        verify: "test -f server/app.py"
+        status: pending
+  - id: e05s02
+    title: "Экспорт/импорт UI + снапшот-варнинг"
+    status: pending
+    tasks:
+      - id: e05s02t01
+        desc: "Импорт воспроизводит расписание на чистом"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending

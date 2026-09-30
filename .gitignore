@@ -142,3 +142,6 @@ captures/
 ### Local IDE noise (user-specific, do not share)
 .idea/codeStyles/
 .idea/inspectionProfiles/
+
+# Secrets — BRS token via .env (never commit)
+.env

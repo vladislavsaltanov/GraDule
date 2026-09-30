@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>GraDule — Лента изменений оценок</title>
+  <!-- Оригинал claude.ai design. Шрифты (Cascadia Code/Mono, Inter) в оригинале
+       подключались @font-face с fonts.gstatic.com — здесь опущены, см. DESIGN.md. -->
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    *{padding:0;margin:0}
+    .text{white-space:pre-wrap;overflow-wrap:break-word}
+  </style>
+</head>
+<body style="display: grid;background-color: #fff;">
+  <div style="background-color: #fff;overflow: hidden;width: 1152px;min-width: 1152px;max-width: 1152px;min-height: 2560px;max-height: 2560px;position: relative;margin: 0px auto;">
+    <div style="background-color: #e8e8e8;left: 0px;top: 0px;width: 1152px;height: 2560px;position: absolute;"></div>
+    <div style="overflow: hidden;left: 0px;top: 2519px;width: 1152px;height: 41px;position: absolute;">
+      <div style="background-color: #000;left: 0px;top: 0px;width: 1152px;height: 41px;position: absolute;"></div>
+      <div style="border-radius: 10px;background-color: #fff;left: 428px;top: 3px;width: 296px;height: 11px;position: absolute;"></div>
+    </div>
+    <div style="background-color: #000;left: 0px;top: 0px;width: 1152px;height: 107px;position: absolute;"></div>
+
+    <!-- ==== навбар ==== -->
+    <div style="overflow: hidden;left: 169px;top: 2281px;width: 814px;height: 188px;position: absolute;">
+      <div style="border-radius: 32px;background-color: #3a3937;left: 0px;top: 0px;width: 814px;height: 188px;position: absolute;"></div>
+      <span class="text" style="display: inline-flex;text-align: center;font-size: 28px;color: #fff;align-items: center;justify-content: center;left: 14.6px;top: 9.7px;width: 793.9px;height: 33.1px;position: absolute;">обновлено сегодня в 20:55</span>
+      <div style="border-radius: 32px;background-color: #c0c0c0;left: 0px;top: 58px;width: 814px;height: 130px;position: absolute;box-shadow: 0px 4px 4px 1px rgba(0,0,0,0.25);"></div>
+      <div style="border-radius: 28px;background-color: #3a3937;left: 407px;top: 65px;width: 200px;height: 116px;position: absolute;"></div>
+      <div style="position: absolute;left: 10%;top: calc(2px + 50%);width: 6.5%;height: 53px;background: #000;border-radius: 10px;"></div>
+      <div style="position: absolute;left: 34.5%;top: calc(2px + 50%);width: 6.5%;height: 53px;background: #fff;border-radius: 10px;"></div>
+      <div style="position: absolute;left: 59.1%;top: calc(1px + 50%);width: 6.5%;height: 53px;background: #000;border-radius: 10px;"></div>
+      <div style="position: absolute;left: 83.7%;top: calc(2px + 50%);width: 6.5%;height: 53px;background: #000;border-radius: 10px;"></div>
+    </div>
+
+    <!-- ==== лента изменений ==== -->
+    <div style="overflow: hidden;display: flex;flex-direction: column;row-gap: 10px;left: 0px;top: 307px;width: 1152px;height: 1924px;position: absolute;padding: 0px 16px;">
+      <div style="border-radius: 20px;overflow: hidden;width: 100%;height: 325px;position: relative;flex-shrink: 0;">
+        <div style="border-width: 0px 5px 5px;border-style: solid;border-color: #3a3937;border-radius: 28px;background-color: #c0c0c0;left: 10px;top: 0px;width: 1100px;height: 310px;position: absolute;box-shadow: 0px 4px 10px 3px rgba(0,0,0,0.25);"></div>
+        <div style="border-radius: 28px;background-color: #3a3937;left: 10px;top: 0px;width: 1100px;height: 242px;position: absolute;"></div>
+        <div style="border-radius: 18px;background-color: #c0c0c0;left: 20px;top: 60px;width: 1080px;height: 172px;position: absolute;"></div>
+        <span class="text" style="display: inline-flex;line-height: 54px;font-size: 55px;font-weight: 700;color: #1a1a1a;align-items: center;left: 50px;top: 75px;position: absolute;">CS292. Вычислительная математика</span>
+        <span class="text" style="display: inline-flex;line-height: 52px;font-size: 32px;font-weight: 400;color: #1a1a1a;align-items: center;left: 50px;top: 185px;position: absolute;">Модуль 4 Интегрирование • Пример 13</span>
+        <span class="text" style="display: inline-flex;text-align: right;font-size: 34px;color: #e8e8e8;align-items: center;justify-content: flex-end;left: 628px;top: 10px;width: 442px;height: 40px;position: absolute;">12:33</span>
+        <span class="text" style="display: inline-flex;font-size: 32px;font-weight: 700;color: #1a1a1a;align-items: center;left: 50px;top: 254px;position: absolute;">изменение</span>
+        <span class="text" style="display: inline-flex;text-align: right;font-size: 32px;font-weight: 700;color: #1a1a1a;align-items: center;justify-content: flex-end;left: 882px;top: 253px;width: 188px;height: 40px;position: absolute;">2</span>
+        <span class="text" style="display: inline-flex;font-size: 34px;color: #e8e8e8;align-items: center;left: 50px;top: 10px;width: 442px;height: 40px;position: absolute;">15 июня</span>
+        <div style="overflow: hidden;left: 530px;top: 245px;width: 60px;height: 60px;position: absolute;background: #7a7975;border-radius: 8px;"></div>
+        <div style="overflow: hidden;left: 1084px;top: 14px;width: 18px;height: 18px;position: absolute;background: #e3e3e3;border-radius: 3px;"></div>
+      </div>
+      <div style="border-radius: 20px;overflow: hidden;width: 100%;height: 325px;position: relative;flex-shrink: 0;">
+        <div style="border-width: 0px 5px 5px;border-style: solid;border-color: #3a3937;border-radius: 28px;background-color: #c0c0c0;left: 10px;top: 0px;width: 1100px;height: 310px;position: absolute;box-shadow: 0px 4px 10px 3px rgba(0,0,0,0.25);"></div>
+        <div style="border-radius: 28px;background-color: #3a3937;left: 10px;top: 0px;width: 1100px;height: 242px;position: absolute;"></div>
+        <div style="border-radius: 18px;background-color: #c0c0c0;left: 20px;top: 60px;width: 1080px;height: 172px;position: absolute;"></div>
+        <span class="text" style="display: inline-flex;line-height: 52px;font-size: 55px;font-weight: 700;color: #1a1a1a;align-items: center;left: 50px;top: 75px;position: absolute;">CS203. Теория алгоритмов</span>
+        <span class="text" style="display: inline-flex;line-height: 52px;font-size: 32px;font-weight: 400;color: #1a1a1a;align-items: center;left: 50px;top: 185px;position: absolute;">2026-05-20 • семинар</span>
+        <span class="text" style="display: inline-flex;text-align: right;font-size: 34px;color: #e8e8e8;align-items: center;justify-content: flex-end;left: 628px;top: 10px;width: 442px;height: 40px;position: absolute;">19:34</span>
+        <span class="text" style="display: inline-flex;font-size: 32px;font-weight: 700;color: #1a1a1a;align-items: center;left: 50px;top: 254px;position: absolute;">посещено</span>
+        <span class="text" style="display: inline-flex;text-align: right;font-size: 32px;font-weight: 700;color: #1a1a1a;align-items: center;justify-content: flex-end;left: 628px;top: 253px;width: 442px;height: 40px;position: absolute;">2</span>
+        <span class="text" style="display: inline-flex;font-size: 34px;color: #e8e8e8;align-items: center;left: 50px;top: 10px;width: 442px;height: 40px;position: absolute;">20 мая</span>
+        <div style="overflow: hidden;left: 530px;top: 245px;width: 60px;height: 60px;position: absolute;background: #7a7975;border-radius: 8px;"></div>
+      </div>
+      <div style="border-radius: 20px;overflow: hidden;width: 100%;height: 325px;position: relative;flex-shrink: 0;">
+        <div style="border-width: 0px 5px 5px;border-style: solid;border-color: #3a3937;border-radius: 28px;background-color: #c0c0c0;left: 10px;top: 0px;width: 1100px;height: 310px;position: absolute;box-shadow: 0px 4px 10px 3px rgba(0,0,0,0.25);"></div>
+        <div style="border-radius: 28px;background-color: #3a3937;left: 10px;top: 0px;width: 1100px;height: 242px;position: absolute;"></div>
+        <div style="border-radius: 18px;background-color: #c0c0c0;left: 20px;top: 60px;width: 1080px;height: 172px;position: absolute;"></div>
+        <span class="text" style="display: inline-flex;line-height: 52px;font-size: 55px;font-weight: 700;color: #1a1a1a;align-items: center;left: 50px;top: 75px;position: absolute;">CS203. Теория алгоритмов</span>
+        <span class="text" style="display: inline-flex;line-height: 52px;font-size: 32px;font-weight: 400;color: #1a1a1a;align-items: center;left: 50px;top: 185px;position: absolute;">2026-05-21 • семинар</span>
+        <span class="text" style="display: inline-flex;text-align: right;font-size: 34px;color: #e8e8e8;align-items: center;justify-content: flex-end;left: 628px;top: 10px;width: 442px;height: 40px;position: absolute;">19:32</span>
+        <span class="text" style="display: inline-flex;font-size: 32px;font-weight: 700;color: #1a1a1a;align-items: center;left: 50px;top: 256px;position: absolute;">пропущено</span>
+        <span class="text" style="display: inline-flex;text-align: right;font-size: 32px;font-weight: 700;color: #1a1a1a;align-items: center;justify-content: flex-end;left: 628px;top: 255px;width: 442px;height: 40px;position: absolute;">2</span>
+        <span class="text" style="display: inline-flex;font-size: 34px;color: #e8e8e8;align-items: center;left: 50px;top: 10px;width: 442px;height: 40px;position: absolute;">20 мая</span>
+        <div style="overflow: hidden;left: 530px;top: 247px;width: 60px;height: 60px;position: absolute;background: #7a7975;border-radius: 8px;"></div>
+      </div>
+    </div>
+
+    <!-- ==== шапка ==== -->
+    <div style="overflow: hidden;left: 0px;top: -3px;width: 1142px;height: 110px;position: absolute;background: #3a3937;"></div>
+    <div style="overflow: hidden;left: 26px;top: 157px;width: 1100px;height: 100px;position: absolute;">
+      <div style="overflow: hidden;left: 1000px;top: 0px;width: 100px;height: 100px;position: absolute;">
+        <div style="border-radius: 50%;background-color: #3a3937;left: 0px;top: 0px;width: 100px;height: 100px;position: absolute;"></div>
+        <div style="overflow: hidden;left: 27px;top: 27px;width: 45px;height: 45px;position: absolute;background: #7a7975;border-radius: 6px;"></div>
+      </div>
+      <div style="overflow: hidden;left: 0px;top: 0px;width: 100px;height: 100px;position: absolute;">
+        <div style="border-radius: 50px;background-color: #3a3937;left: 0px;top: 0px;width: 100px;height: 100px;position: absolute;"></div>
+        <div style="overflow: hidden;left: 27px;top: 27px;width: 45px;height: 45px;position: absolute;background: #7a7975;border-radius: 6px;"></div>
+      </div>
+      <div style="overflow: hidden;left: 132px;top: 0px;width: 836px;height: 100px;position: absolute;">
+        <div style="border-radius: 28px;background-color: #3a3937;left: 0px;top: 0px;width: 836px;height: 100px;position: absolute;"></div>
+        <div style="overflow: hidden;left: 716px;top: 20px;width: 60px;height: 60px;position: absolute;background: #7a7975;border-radius: 8px;"></div>
+        <span class="text" style="display: inline-flex;text-align: center;font-size: 48px;color: #fff;align-items: center;justify-content: center;left: 78px;top: 25px;width: 680px;height: 50px;position: absolute;">15 июня • 2026</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

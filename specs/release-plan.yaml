@@ -1,0 +1,50 @@
+release: GraDule v1
+ordering: WSJF — разведка и каркас первыми,
+  домены параллельно, обмен и фон после ядра
+epics:
+  - id: e00
+    slug: recon
+    title: Разведка W0 — фикстуры
+    wsjf: 1
+    status: pending
+    blocks: e02, e03
+    note: R4 (снимки) стартовать раньше
+  - id: e01
+    slug: shell
+    title: Каркас W1 + вход W2
+    wsjf: 2
+    status: pending
+    blocks: e02, e03
+  - id: e02
+    slug: schedule-read
+    title: Ядро W4 + чтение W5
+    wsjf: 3
+    status: pending
+    parallel_with: e03
+  - id: e03
+    slug: brs
+    title: БРС-срез W3
+    wsjf: 3
+    status: pending
+    parallel_with: e02
+  - id: e04
+    slug: my-entries
+    title: Записи W6 + оверрайды W8(b)
+    wsjf: 4
+    status: pending
+    blocks: e05
+  - id: e05
+    slug: exchange
+    title: Обмен W7 (клиент + сервер)
+    wsjf: 5
+    status: pending
+  - id: e06
+    slug: notify
+    title: Фон W9 (poll)
+    wsjf: 6
+    status: pending
+  - id: e07
+    slug: extras
+    title: Виджет + PDF W10
+    wsjf: 7
+    status: pending

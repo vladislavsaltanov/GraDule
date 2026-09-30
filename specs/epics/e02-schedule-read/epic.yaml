@@ -1,0 +1,31 @@
+id: e02
+slug: schedule-read
+title: "Ядро W4 + чтение W5"
+stream: W4+W5
+status: pending
+depends: [e00, e01]
+blocks: [e04, e07]
+parallel_with: e03
+decisions: []
+stories:
+  - id: e02s01
+    title: "Ядро: парсер timeslot + записи на дату"
+    status: pending
+    waits: "e00s02 (W-база, чётность)"
+    tasks:
+      - id: e02s01t01
+        desc: "Парсер full/upper/lower, слоты, info, подгруппы"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending
+  - id: e02s02
+    title: "Выбор группы + экран дня + подгруппы"
+    status: pending
+    tasks:
+      - id: e02s02t01
+        desc: "Резолв id по human-ключу, замена SERVER-набора"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending
+      - id: e02s02t02
+        desc: "Экран дня: свайп, info, фильтр подгруппы"
+        verify: "./gradlew :app:assembleDebug"
+        status: pending

@@ -1,0 +1,21 @@
+story_id: e00s01
+title: "R1+R2: лента БРС и Rate"
+status: failing
+bcps: 2
+tasks:
+  - id: 1
+    description: "Снять events.raw + headers (токен скрыт)"
+    verify: "test -f specs/fixtures/brs/events.raw"
+    risk: P2
+    status: failing
+    allure:
+      severity: normal
+      categories: ["recon", "BRS"]
+  - id: 2
+    description: "Сверить Rate и записать rate-note.md"
+    verify: "test -f specs/fixtures/brs/rate-note.md"
+    risk: P2
+    status: failing
+    allure:
+      severity: normal
+      categories: ["recon", "BRS"]

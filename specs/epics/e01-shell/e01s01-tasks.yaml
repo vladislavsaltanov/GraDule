@@ -1,0 +1,29 @@
+story_id: e01s01
+title: "Тема + гибридная навигация"
+status: implemented
+bcps: 5
+tasks:
+  - id: 1
+    description: "Цвета темы + обе схемы"
+    verify: "./gradlew :app:assembleDebug"
+    risk: P2
+    status: green
+    allure:
+      severity: normal
+      categories: ["shell", "ui"]
+  - id: 2
+    description: "Bottom 3 + drawer + пустые экраны"
+    verify: "./gradlew :app:assembleDebug"
+    risk: P1
+    status: green
+    allure:
+      severity: high
+      categories: ["shell", "ui"]
+  - id: 3
+    description: "SyncUiState + тексты состояний"
+    verify: "./gradlew :app:testDebugUnitTest"
+    risk: P1
+    status: green
+    allure:
+      severity: high
+      categories: ["shell", "unit"]

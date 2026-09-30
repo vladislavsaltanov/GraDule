@@ -1,0 +1,21 @@
+story_id: e04s01
+title: "LOCAL-записи, заметки, архив"
+status: failing
+bcps: 5
+tasks:
+  - id: 1
+    description: "LOCAL + скрытия + архив-scope"
+    verify: "./gradlew :app:testDebugUnitTest"
+    risk: P0
+    status: failing
+    allure:
+      severity: critical
+      categories: ["entries", "unit"]
+  - id: 2
+    description: "Заметки на вхождение + напоминания"
+    verify: "./gradlew :app:testDebugUnitTest"
+    risk: P1
+    status: failing
+    allure:
+      severity: high
+      categories: ["entries", "unit"]

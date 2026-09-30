@@ -1,0 +1,21 @@
+story_id: e03s01
+title: "Семестры, дисциплины, детали"
+status: failing
+bcps: 5
+tasks:
+  - id: 1
+    description: "Semester/Discipline + reconcile-контракт"
+    verify: "./gradlew :app:testDebugUnitTest"
+    risk: P0
+    status: failing
+    allure:
+      severity: critical
+      categories: ["brs", "unit"]
+  - id: 2
+    description: "Детальный экран + сверка"
+    verify: "./gradlew :app:testDebugUnitTest"
+    risk: P1
+    status: failing
+    allure:
+      severity: high
+      categories: ["brs", "unit", "ui"]

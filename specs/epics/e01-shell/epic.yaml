@@ -1,0 +1,29 @@
+id: e01
+slug: shell
+title: "Каркас W1 + вход W2"
+stream: W1+W2
+status: pending
+depends: []
+blocks: [e02, e03]
+decisions: ["gradule-nav", "gradule-onboarding"]
+stories:
+  - id: e01s01
+    title: "Тема + гибридная навигация, пустые экраны"
+    status: pending
+    tasks:
+      - id: e01s01t01
+        desc: "Цвета из темы, bottom 3 + drawer, скелетоны"
+        verify: "./gradlew :app:assembleDebug"
+        status: pending
+  - id: e01s02
+    title: "Разбор ссылки БРС, DataStore, logout"
+    status: pending
+    tasks:
+      - id: e01s02t01
+        desc: "Парсер token/recordbook/semester + ошибки"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending
+      - id: e01s02t02
+        desc: "Выход очищает данные и токен"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending

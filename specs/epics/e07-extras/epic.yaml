@@ -1,0 +1,25 @@
+id: e07
+slug: extras
+title: "Виджет + PDF W10"
+stream: W10
+status: pending
+depends: [e02, e04]
+blocks: []
+decisions: ["gradule-pdf-week"]
+stories:
+  - id: e07s01
+    title: "Виджет сегодня из БД без сети"
+    status: pending
+    tasks:
+      - id: e07s01t01
+        desc: "Glance-vs-классика на реализации; данные из БД"
+        verify: "./gradlew :app:assembleDebug"
+        status: pending
+  - id: e07s02
+    title: "PDF недели"
+    status: pending
+    tasks:
+      - id: e07s02t01
+        desc: "Рендер недельного расписания в PDF"
+        verify: "./gradlew :app:assembleDebug"
+        status: pending

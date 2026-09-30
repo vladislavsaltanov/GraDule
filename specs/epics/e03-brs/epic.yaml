@@ -1,0 +1,32 @@
+id: e03
+slug: brs
+title: "БРС-срез W3"
+stream: W3
+status: pending
+depends: [e00, e01]
+blocks: [e06]
+parallel_with: e02
+decisions: []
+stories:
+  - id: e03s01
+    title: "Семестры + дисциплины + детали"
+    status: pending
+    waits: "e00s01 (R2: серверный Rate)"
+    tasks:
+      - id: e03s01t01
+        desc: "Список: Rate, hiddenByUser, null-прочерк"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending
+      - id: e03s01t02
+        desc: "Детали: подмодули, ExtraRate, сверка мелким"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending
+  - id: e03s02
+    title: "Лента событий"
+    status: pending
+    waits: "e00s01 (R1: формат ленты)"
+    tasks:
+      - id: e03s02t01
+        desc: "Парсер ленты + экран, сортировка по дате"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending

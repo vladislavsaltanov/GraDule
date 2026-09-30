@@ -1,0 +1,16 @@
+# Статус стори — единственный источник (не выводить из release-plan).
+e00s01: pending # R1+R2: лента и Rate (ждёт токен)
+e00s02: pending # R3+R4+R5: грамматика schedule + стабильность id
+e01s01: implemented # сборка+тесты зелёные, ручной прогон не делали
+e01s02: pending # разбор ссылки, DataStore, logout
+e02s01: pending # ядро: парсер + записи на дату (pure Kotlin)
+e02s02: pending # выбор группы + экран дня + подгруппы
+e03s01: pending # семестры + дисциплины + детали
+e03s02: pending # лента событий (после e00s01)
+e04s01: pending # LOCAL + заметки на вхождения + напоминания + архив
+e04s02: pending # оверрайды (b)
+e05s01: pending # схема v1 + сервер (random id, TTL, лимиты)
+e05s02: pending # экспорт/импорт UI + предупреждение-снапшот
+e06s01: pending # WorkManager poll + уведомления без повторов
+e07s01: pending # виджет сегодня из БД
+e07s02: pending # PDF недели

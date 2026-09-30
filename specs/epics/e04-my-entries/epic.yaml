@@ -1,0 +1,29 @@
+id: e04
+slug: my-entries
+title: "Записи W6 + оверрайды W8(b)"
+stream: W6+W8
+status: pending
+depends: [e02]
+blocks: [e05]
+decisions: ["gradule-overrides", "gradule-semester-scope"]
+stories:
+  - id: e04s01
+    title: "LOCAL + заметки на вхождения + архив"
+    status: pending
+    tasks:
+      - id: e04s01t01
+        desc: "WEEKLY/ONE_OFF, скрытия, заметки на дату"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending
+      - id: e04s01t02
+        desc: "Scope по семестрам: архив виден, новый чистый"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending
+  - id: e04s02
+    title: "Оверрайды (b) отдельной таблицей"
+    status: pending
+    tasks:
+      - id: e04s02t01
+        desc: "Переопределения + детект конфликта по хэшу"
+        verify: "./gradlew :app:testDebugUnitTest"
+        status: pending

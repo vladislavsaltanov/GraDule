@@ -1,7 +1,7 @@
 session:
   date: "2026-09-30"
-  active_flow: null
-  epic: null
+  active_flow: e01s01
+  epic: e01
 workflow_mode: solo-git
 vcs:
   kind: git
@@ -9,8 +9,19 @@ vcs:
 environment:
   java_system: "25 Temurin (system)"
   daemon_toolchain: "21 (foojay)"
-  agp: "9.4.1 (uncommitted)"
-  gradle_wrapper: "9.6.0 (uncommitted)"
+  agp: "9.4.1"
+  gradle_wrapper: "9.6.0"
+  extra_dep: "material-icons-core (material3 больше не тянет)"
+design:
+  source_of_truth: docs/design/DESIGN.md
+  prototypes:
+    - docs/design/home-schedule.html
+    - docs/design/grades.html
+    - docs/design/grade-changes.html
 handoff:
-  next_skill: elaborate-spec
-  note: "Baseline 2026-09-30: template app, dirty tree (AGP/wrapper/.idea). Decide commit vs revert, then first feature spec."
+  next_skill: verify-work
+  note: >-
+    e01s01 кодом готов (сборка + 5 юнит-тестов зелёные), ручного
+    прогона на устройстве не было. Дальше по плану: e02s01 (ядро парсера,
+    pure Kotlin, токен не нужен) или e00s02 — для него нужен BRS_TOKEN
+    в .env.
