@@ -1,0 +1,29 @@
+{
+  "id": "b7e517d5c",
+  "name": "gradle build and unit tests",
+  "command": "cd /Users/kowie/Documents/Projects/GraDule && ./gradlew :app:assembleDebug :app:testDebugUnitTest 2>&1 | tail -60",
+  "description": "Сборка debug + юнит-тесты e01s01",
+  "status": "completed",
+  "outputPath": ".pi/tasks/01a0f497-5ad0-751c-98cc-b94264e2b270-14651/b7e517d5c.output",
+  "cwd": "/Users/kowie/Documents/Projects/GraDule",
+  "startTime": 1790810874319,
+  "endTime": 1790810876225,
+  "exitCode": 0,
+  "signal": null,
+  "pid": 72483,
+  "bytesWritten": 4998,
+  "isAgent": false,
+  "surviveReload": false,
+  "notified": true,
+  "notifyOnCompletion": true,
+  "triggerOnCompletion": true,
+  "timeoutSeconds": 900,
+  "shellPolicy": {
+    "policy": "inherit",
+    "executable": "/bin/zsh",
+    "argvPrefix": [
+      "-c"
+    ],
+    "dialect": "posix"
+  }
+}

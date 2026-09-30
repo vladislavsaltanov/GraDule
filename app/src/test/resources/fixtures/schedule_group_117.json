@@ -1,0 +1,386 @@
+{
+ "lessons": [
+  {
+   "id": 3149,
+   "uberid": 583,
+   "subcount": 1,
+   "timeslot": "(0,15:50:00,17:25:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3146,
+   "uberid": 583,
+   "subcount": 1,
+   "timeslot": "(0,11:55:00,13:30:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3144,
+   "uberid": 583,
+   "subcount": 1,
+   "timeslot": "(0,08:00:00,09:35:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3145,
+   "uberid": 583,
+   "subcount": 2,
+   "timeslot": "(0,09:50:00,11:25:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3380,
+   "uberid": 583,
+   "subcount": 3,
+   "timeslot": "(1,09:50:00,11:25:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3381,
+   "uberid": 583,
+   "subcount": 3,
+   "timeslot": "(1,11:55:00,13:30:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3515,
+   "uberid": 647,
+   "subcount": 1,
+   "timeslot": "(2,11:55:00,13:30:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3521,
+   "uberid": 583,
+   "subcount": 1,
+   "timeslot": "(2,13:45:00,15:20:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3533,
+   "uberid": 583,
+   "subcount": 1,
+   "timeslot": "(2,15:50:00,17:25:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3784,
+   "uberid": 647,
+   "subcount": 1,
+   "timeslot": "(3,08:00:00,09:35:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3799,
+   "uberid": 583,
+   "subcount": 1,
+   "timeslot": "(3,13:45:00,15:20:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3803,
+   "uberid": 583,
+   "subcount": 1,
+   "timeslot": "(3,15:50:00,17:25:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3922,
+   "uberid": 583,
+   "subcount": 1,
+   "timeslot": "(5,08:00:00,09:35:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3923,
+   "uberid": 583,
+   "subcount": 1,
+   "timeslot": "(5,09:50:00,11:25:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3929,
+   "uberid": 647,
+   "subcount": 1,
+   "timeslot": "(5,13:45:00,15:20:00,full)",
+   "info": "",
+   "ctype": false
+  }
+ ],
+ "curricula": [
+  {
+   "id": 6115,
+   "lessonid": 3146,
+   "subnum": 1,
+   "subjectid": 1785,
+   "subjectname": "Цифровая обработка сигналов",
+   "subjectabbr": "Цифр Обраб Сигн",
+   "teacherid": 84,
+   "teachername": "Кряквин Вадим Донатович",
+   "teacherdegree": "Доцент",
+   "roomid": 41,
+   "roomname": "314"
+  },
+  {
+   "id": 6116,
+   "lessonid": 3145,
+   "subnum": 1,
+   "subjectid": 1784,
+   "subjectname": "Теория автоматов и шифров",
+   "subjectabbr": "Теор Автом и Шифр",
+   "teacherid": 248,
+   "teachername": "Махно Виктория Викторовна",
+   "teacherdegree": "Доцент",
+   "roomid": 30,
+   "roomname": "302"
+  },
+  {
+   "id": 6117,
+   "lessonid": 3145,
+   "subnum": 2,
+   "subjectid": 1785,
+   "subjectname": "Цифровая обработка сигналов",
+   "subjectabbr": "Цифр Обраб Сигн",
+   "teacherid": 413,
+   "teachername": "Бабаев А Б",
+   "teacherdegree": "ассистент",
+   "roomid": 41,
+   "roomname": "314"
+  },
+  {
+   "id": 6394,
+   "lessonid": 3515,
+   "subnum": 1,
+   "subjectid": 1779,
+   "subjectname": "Искусственный интеллект",
+   "subjectabbr": "ИИ",
+   "teacherid": 258,
+   "teachername": "Землякова Ирина Александровна",
+   "teacherdegree": "Доцент",
+   "roomid": 29,
+   "roomname": "301"
+  },
+  {
+   "id": 6401,
+   "lessonid": 3521,
+   "subnum": 1,
+   "subjectid": 1779,
+   "subjectname": "Искусственный интеллект",
+   "subjectabbr": "ИИ",
+   "teacherid": 258,
+   "teachername": "Землякова Ирина Александровна",
+   "teacherdegree": "Доцент",
+   "roomid": 10,
+   "roomname": "120"
+  },
+  {
+   "id": 7044,
+   "lessonid": 3922,
+   "subnum": 1,
+   "subjectid": 1786,
+   "subjectname": "Криптография",
+   "subjectabbr": "Криптография",
+   "teacherid": 81,
+   "teachername": "Косолапов Юрий Владимирович",
+   "teacherdegree": "Доцент",
+   "roomid": 38,
+   "roomname": "311"
+  },
+  {
+   "id": 7052,
+   "lessonid": 3929,
+   "subnum": 1,
+   "subjectid": 1778,
+   "subjectname": "Машинное обучение",
+   "subjectabbr": "Машин Обуч",
+   "teacherid": 413,
+   "teachername": "Бабаев А Б",
+   "teacherdegree": "ассистент",
+   "roomid": 44,
+   "roomname": "317"
+  },
+  {
+   "id": 7045,
+   "lessonid": 3923,
+   "subnum": 1,
+   "subjectid": 1786,
+   "subjectname": "Криптография",
+   "subjectabbr": "Криптография",
+   "teacherid": 81,
+   "teachername": "Косолапов Юрий Владимирович",
+   "teacherdegree": "Доцент",
+   "roomid": 38,
+   "roomname": "311"
+  },
+  {
+   "id": 6208,
+   "lessonid": 3380,
+   "subnum": 1,
+   "subjectid": 1780,
+   "subjectname": "Математические модели естественных наук",
+   "subjectabbr": "Матем Модел Естес Наук",
+   "teacherid": 161,
+   "teachername": "Скалиух Александр Сергеевич",
+   "teacherdegree": "Доцент",
+   "roomid": 22,
+   "roomname": "217"
+  },
+  {
+   "id": 6209,
+   "lessonid": 3380,
+   "subnum": 2,
+   "subjectid": 1782,
+   "subjectname": "Модели нелинейной динамики",
+   "subjectabbr": "Модел Нелин Динам",
+   "teacherid": 33,
+   "teachername": "Говорухин Василий Николаевич",
+   "teacherdegree": "Профессор",
+   "roomid": 19,
+   "roomname": "212"
+  },
+  {
+   "id": 6210,
+   "lessonid": 3380,
+   "subnum": 3,
+   "subjectid": 1781,
+   "subjectname": "Эконометрические модели",
+   "subjectabbr": "Экон Модел",
+   "teacherid": 38,
+   "teachername": "Данилова Наталья Викторовна",
+   "teacherdegree": "Доцент",
+   "roomid": 39,
+   "roomname": "312"
+  },
+  {
+   "id": 5753,
+   "lessonid": 3144,
+   "subnum": 1,
+   "subjectid": 1784,
+   "subjectname": "Теория автоматов и шифров",
+   "subjectabbr": "Теор Автом и Шифр",
+   "teacherid": 248,
+   "teachername": "Махно Виктория Викторовна",
+   "teacherdegree": "Доцент",
+   "roomid": 30,
+   "roomname": "302"
+  },
+  {
+   "id": 5759,
+   "lessonid": 3149,
+   "subnum": 1,
+   "subjectid": 1778,
+   "subjectname": "Машинное обучение",
+   "subjectabbr": "Машин Обуч",
+   "teacherid": 35,
+   "teachername": "Гуда Сергей Александрович",
+   "teacherdegree": "Доцент",
+   "roomid": 10,
+   "roomname": "120"
+  },
+  {
+   "id": 6211,
+   "lessonid": 3381,
+   "subnum": 1,
+   "subjectid": 1780,
+   "subjectname": "Математические модели естественных наук",
+   "subjectabbr": "Матем Модел Естес Наук",
+   "teacherid": 161,
+   "teachername": "Скалиух Александр Сергеевич",
+   "teacherdegree": "Доцент",
+   "roomid": 22,
+   "roomname": "217"
+  },
+  {
+   "id": 6212,
+   "lessonid": 3381,
+   "subnum": 2,
+   "subjectid": 1782,
+   "subjectname": "Модели нелинейной динамики",
+   "subjectabbr": "Модел Нелин Динам",
+   "teacherid": 427,
+   "teachername": "Селищев А А",
+   "teacherdegree": "",
+   "roomid": 6,
+   "roomname": "114"
+  },
+  {
+   "id": 6213,
+   "lessonid": 3381,
+   "subnum": 3,
+   "subjectid": 1781,
+   "subjectname": "Эконометрические модели",
+   "subjectabbr": "Экон Модел",
+   "teacherid": 38,
+   "teachername": "Данилова Наталья Викторовна",
+   "teacherdegree": "Доцент",
+   "roomid": 39,
+   "roomname": "312"
+  },
+  {
+   "id": 6415,
+   "lessonid": 3533,
+   "subnum": 1,
+   "subjectid": 1776,
+   "subjectname": "Компьютерные сети",
+   "subjectabbr": "Комп Сети",
+   "teacherid": 35,
+   "teachername": "Гуда Сергей Александрович",
+   "teacherdegree": "Доцент",
+   "roomid": 10,
+   "roomname": "120"
+  },
+  {
+   "id": 6821,
+   "lessonid": 3784,
+   "subnum": 1,
+   "subjectid": 1776,
+   "subjectname": "Компьютерные сети",
+   "subjectabbr": "Комп Сети",
+   "teacherid": 260,
+   "teachername": "Баглий Антон Павлович",
+   "teacherdegree": "Старший преподаватель",
+   "roomid": 96,
+   "roomname": "ЛОС 4 (НИИ МиПМ)"
+  },
+  {
+   "id": 6839,
+   "lessonid": 3799,
+   "subnum": 1,
+   "subjectid": 1783,
+   "subjectname": "Математические основы защиты информации",
+   "subjectabbr": "Матем Основ Защит Инфор",
+   "teacherid": 102,
+   "teachername": "Мелихов Сергей Николаевич",
+   "teacherdegree": "Профессор",
+   "roomid": 39,
+   "roomname": "312"
+  },
+  {
+   "id": 6843,
+   "lessonid": 3803,
+   "subnum": 1,
+   "subjectid": 1783,
+   "subjectname": "Математические основы защиты информации",
+   "subjectabbr": "Матем Основ Защит Инфор",
+   "teacherid": 102,
+   "teachername": "Мелихов Сергей Николаевич",
+   "teacherdegree": "Профессор",
+   "roomid": 39,
+   "roomname": "312"
+  }
+ ]
+}

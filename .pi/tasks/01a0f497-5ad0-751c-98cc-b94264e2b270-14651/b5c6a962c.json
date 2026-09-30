@@ -1,0 +1,29 @@
+{
+  "id": "b5c6a962c",
+  "name": "gradle rebuild with icons",
+  "command": "cd /Users/kowie/Documents/Projects/GraDule && ./gradlew :app:assembleDebug :app:testDebugUnitTest; echo \"EXIT=$?\"",
+  "description": "Пересборка после фикса иконок и drawer",
+  "status": "completed",
+  "outputPath": ".pi/tasks/01a0f497-5ad0-751c-98cc-b94264e2b270-14651/b5c6a962c.output",
+  "cwd": "/Users/kowie/Documents/Projects/GraDule",
+  "startTime": 1790810921710,
+  "endTime": 1790810939614,
+  "exitCode": 0,
+  "signal": null,
+  "pid": 73391,
+  "bytesWritten": 2203,
+  "isAgent": false,
+  "surviveReload": false,
+  "notified": true,
+  "notifyOnCompletion": true,
+  "triggerOnCompletion": true,
+  "timeoutSeconds": 900,
+  "shellPolicy": {
+    "policy": "inherit",
+    "executable": "/bin/zsh",
+    "argvPrefix": [
+      "-c"
+    ],
+    "dialect": "posix"
+  }
+}

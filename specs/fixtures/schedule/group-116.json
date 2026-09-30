@@ -1,0 +1,386 @@
+{
+ "lessons": [
+  {
+   "id": 3139,
+   "uberid": 581,
+   "subcount": 1,
+   "timeslot": "(0,13:45:00,15:20:00,upper)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3140,
+   "uberid": 582,
+   "subcount": 1,
+   "timeslot": "(0,13:45:00,15:20:00,lower)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3317,
+   "uberid": 582,
+   "subcount": 1,
+   "timeslot": "(1,11:55:00,13:30:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3329,
+   "uberid": 582,
+   "subcount": 1,
+   "timeslot": "(1,13:45:00,15:20:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3307,
+   "uberid": 581,
+   "subcount": 1,
+   "timeslot": "(1,09:50:00,11:25:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3500,
+   "uberid": 582,
+   "subcount": 1,
+   "timeslot": "(2,17:40:00,19:15:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3768,
+   "uberid": 581,
+   "subcount": 1,
+   "timeslot": "(3,11:55:00,13:30:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3776,
+   "uberid": 582,
+   "subcount": 6,
+   "timeslot": "(3,13:45:00,15:20:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3782,
+   "uberid": 670,
+   "subcount": 1,
+   "timeslot": "(3,15:50:00,17:25:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3783,
+   "uberid": 670,
+   "subcount": 1,
+   "timeslot": "(3,17:40:00,19:15:00,upper)",
+   "info": "до 18:25",
+   "ctype": true
+  },
+  {
+   "id": 3823,
+   "uberid": 582,
+   "subcount": 1,
+   "timeslot": "(4,11:55:00,13:30:00,full)",
+   "info": "",
+   "ctype": true
+  },
+  {
+   "id": 3832,
+   "uberid": 581,
+   "subcount": 1,
+   "timeslot": "(4,13:45:00,15:20:00,full)",
+   "info": "",
+   "ctype": false
+  },
+  {
+   "id": 3833,
+   "uberid": 581,
+   "subcount": 1,
+   "timeslot": "(4,15:50:00,17:25:00,upper)",
+   "info": "до 16-35",
+   "ctype": false
+  },
+  {
+   "id": 3834,
+   "uberid": 581,
+   "subcount": 1,
+   "timeslot": "(4,15:50:00,17:25:00,lower)",
+   "info": "с 16-40 каждую неделю",
+   "ctype": false
+  },
+  {
+   "id": 3920,
+   "uberid": 680,
+   "subcount": 1,
+   "timeslot": "(5,09:50:00,11:25:00,full)",
+   "info": "по дополнительному расписанию",
+   "ctype": false
+  }
+ ],
+ "curricula": [
+  {
+   "id": 6034,
+   "lessonid": 3317,
+   "subnum": 1,
+   "subjectid": 1205,
+   "subjectname": "CS291. Теория вероятностей и математическая статистика",
+   "subjectabbr": "CS291. Теор Вер и Матем Стат",
+   "teacherid": 419,
+   "teachername": "Чеголин А П",
+   "teacherdegree": "ассистент",
+   "roomid": 10,
+   "roomname": "120"
+  },
+  {
+   "id": 6378,
+   "lessonid": 3500,
+   "subnum": 1,
+   "subjectid": 1602,
+   "subjectname": "Веб-программирование",
+   "subjectabbr": "Веб-прог",
+   "teacherid": 229,
+   "teachername": "Оганесян Павел Артурович",
+   "teacherdegree": "Доцент",
+   "roomid": 135,
+   "roomname": "Онлайн"
+  },
+  {
+   "id": 7161,
+   "lessonid": 3834,
+   "subnum": 1,
+   "subjectid": 1602,
+   "subjectname": "Веб-программирование",
+   "subjectabbr": "Веб-прог",
+   "teacherid": 384,
+   "teachername": "Горшков Сергей Андреевич",
+   "teacherdegree": "Ассистент",
+   "roomid": 12,
+   "roomname": "202"
+  },
+  {
+   "id": 5747,
+   "lessonid": 3139,
+   "subnum": 1,
+   "subjectid": 1197,
+   "subjectname": "CS202. Теория автоматов и формальных языков",
+   "subjectabbr": "CS202. Теор Автом и ФЯ",
+   "teacherid": 303,
+   "teachername": "Дронов Алексей Константинович",
+   "teacherdegree": "Доцент",
+   "roomid": 97,
+   "roomname": " ?"
+  },
+  {
+   "id": 6179,
+   "lessonid": 3307,
+   "subnum": 1,
+   "subjectid": 1196,
+   "subjectname": "CS221. Архитектура компьютера и операционные системы",
+   "subjectabbr": "CS221. Архит Комп и ОС",
+   "teacherid": 285,
+   "teachername": "Шабас Ирина Николаевна",
+   "teacherdegree": "Доцент",
+   "roomid": 30,
+   "roomname": "302"
+  },
+  {
+   "id": 7156,
+   "lessonid": 3833,
+   "subnum": 1,
+   "subjectid": 1203,
+   "subjectname": "CS251. Технологии баз данных",
+   "subjectabbr": "CS251. Техн БД",
+   "teacherid": 418,
+   "teachername": "Карякин Михаил Михайлович",
+   "teacherdegree": "ассистент",
+   "roomid": 12,
+   "roomname": "202"
+  },
+  {
+   "id": 5748,
+   "lessonid": 3140,
+   "subnum": 1,
+   "subjectid": 1196,
+   "subjectname": "CS221. Архитектура компьютера и операционные системы",
+   "subjectabbr": "CS221. Архит Комп и ОС",
+   "teacherid": 11,
+   "teachername": "Андреева Евгения Михайловна",
+   "teacherdegree": "Доцент",
+   "roomid": 10,
+   "roomname": "120"
+  },
+  {
+   "id": 6046,
+   "lessonid": 3329,
+   "subnum": 1,
+   "subjectid": 1196,
+   "subjectname": "CS221. Архитектура компьютера и операционные системы",
+   "subjectabbr": "CS221. Архит Комп и ОС",
+   "teacherid": 11,
+   "teachername": "Андреева Евгения Михайловна",
+   "teacherdegree": "Доцент",
+   "roomid": 10,
+   "roomname": "120"
+  },
+  {
+   "id": 6797,
+   "lessonid": 3768,
+   "subnum": 1,
+   "subjectid": 1205,
+   "subjectname": "CS291. Теория вероятностей и математическая статистика",
+   "subjectabbr": "CS291. Теор Вер и Матем Стат",
+   "teacherid": 419,
+   "teachername": "Чеголин А П",
+   "teacherdegree": "ассистент",
+   "roomid": 46,
+   "roomname": "319"
+  },
+  {
+   "id": 6805,
+   "lessonid": 3776,
+   "subnum": 1,
+   "subjectid": 1171,
+   "subjectname": "Иностранный язык",
+   "subjectabbr": "ИнЯз",
+   "teacherid": 251,
+   "teachername": "",
+   "teacherdegree": "",
+   "roomid": 16,
+   "roomname": "207"
+  },
+  {
+   "id": 6806,
+   "lessonid": 3776,
+   "subnum": 2,
+   "subjectid": 1171,
+   "subjectname": "Иностранный язык",
+   "subjectabbr": "ИнЯз",
+   "teacherid": 251,
+   "teachername": "",
+   "teacherdegree": "",
+   "roomid": 17,
+   "roomname": "208"
+  },
+  {
+   "id": 6807,
+   "lessonid": 3776,
+   "subnum": 3,
+   "subjectid": 1171,
+   "subjectname": "Иностранный язык",
+   "subjectabbr": "ИнЯз",
+   "teacherid": 251,
+   "teachername": "",
+   "teacherdegree": "",
+   "roomid": 32,
+   "roomname": "305"
+  },
+  {
+   "id": 6808,
+   "lessonid": 3776,
+   "subnum": 4,
+   "subjectid": 1171,
+   "subjectname": "Иностранный язык",
+   "subjectabbr": "ИнЯз",
+   "teacherid": 251,
+   "teachername": "",
+   "teacherdegree": "",
+   "roomid": 33,
+   "roomname": "306"
+  },
+  {
+   "id": 6809,
+   "lessonid": 3776,
+   "subnum": 5,
+   "subjectid": 1171,
+   "subjectname": "Иностранный язык",
+   "subjectabbr": "ИнЯз",
+   "teacherid": 251,
+   "teachername": "",
+   "teacherdegree": "",
+   "roomid": 34,
+   "roomname": "307"
+  },
+  {
+   "id": 6810,
+   "lessonid": 3776,
+   "subnum": 6,
+   "subjectid": 1171,
+   "subjectname": "Иностранный язык",
+   "subjectabbr": "ИнЯз",
+   "teacherid": 251,
+   "teachername": "",
+   "teacherdegree": "",
+   "roomid": 35,
+   "roomname": "308"
+  },
+  {
+   "id": 6819,
+   "lessonid": 3782,
+   "subnum": 1,
+   "subjectid": 1197,
+   "subjectname": "CS202. Теория автоматов и формальных языков",
+   "subjectabbr": "CS202. Теор Автом и ФЯ",
+   "teacherid": 257,
+   "teachername": "Могилевская Надежда Сергеевна",
+   "teacherdegree": "Доцент",
+   "roomid": 48,
+   "roomname": "325"
+  },
+  {
+   "id": 6820,
+   "lessonid": 3783,
+   "subnum": 1,
+   "subjectid": 1197,
+   "subjectname": "CS202. Теория автоматов и формальных языков",
+   "subjectabbr": "CS202. Теор Автом и ФЯ",
+   "teacherid": 257,
+   "teachername": "Могилевская Надежда Сергеевна",
+   "teacherdegree": "Доцент",
+   "roomid": 48,
+   "roomname": "325"
+  },
+  {
+   "id": 6922,
+   "lessonid": 3823,
+   "subnum": 1,
+   "subjectid": 1203,
+   "subjectname": "CS251. Технологии баз данных",
+   "subjectabbr": "CS251. Техн БД",
+   "teacherid": 184,
+   "teachername": "Чердынцева Марина Игорьевна",
+   "teacherdegree": "Доцент",
+   "roomid": 10,
+   "roomname": "120"
+  },
+  {
+   "id": 6933,
+   "lessonid": 3832,
+   "subnum": 1,
+   "subjectid": 1203,
+   "subjectname": "CS251. Технологии баз данных",
+   "subjectabbr": "CS251. Техн БД",
+   "teacherid": 418,
+   "teachername": "Карякин Михаил Михайлович",
+   "teacherdegree": "ассистент",
+   "roomid": 12,
+   "roomname": "202"
+  },
+  {
+   "id": 7042,
+   "lessonid": 3920,
+   "subnum": 1,
+   "subjectid": 2386,
+   "subjectname": "МУАМ",
+   "subjectabbr": "МУАМ",
+   "teacherid": 251,
+   "teachername": "",
+   "teacherdegree": "",
+   "roomid": 97,
+   "roomname": " ?"
+  }
+ ]
+}

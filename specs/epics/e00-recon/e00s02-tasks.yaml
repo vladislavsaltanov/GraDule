@@ -1,13 +1,13 @@
 story_id: e00s02
 title: "Грамматика schedule + стабильность id"
-status: failing
+status: passing
 bcps: 3
 tasks:
   - id: 1
     description: "Снять фикстуры schedule-API"
     verify: "test -f specs/fixtures/schedule/group-116.json"
     risk: P1
-    status: failing
+    status: passing
     allure:
       severity: high
       categories: ["recon", "schedule"]
@@ -15,7 +15,7 @@ tasks:
     description: "Написать grammar-note.md (Q3-Q8)"
     verify: "test -f specs/fixtures/schedule/grammar-note.md"
     risk: P1
-    status: failing
+    status: passing
     allure:
       severity: high
       categories: ["recon", "schedule"]
@@ -23,7 +23,7 @@ tasks:
     description: "Датированный R4-снимок"
     verify: "ls specs/fixtures/schedule/snap-*"
     risk: P2
-    status: failing
+    status: passing
     allure:
       severity: normal
       categories: ["recon", "schedule"]

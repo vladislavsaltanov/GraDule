@@ -1,6 +1,6 @@
 # Статус стори — единственный источник (не выводить из release-plan).
 e00s01: pending # R1+R2: лента и Rate (ждёт токен)
-e00s02: pending # R3+R4+R5: грамматика schedule + стабильность id
+e00s02: passing # грамматика timeslot подтверждена на 60 строках, id стабильны
 e01s01: implemented # сборка+тесты зелёные, ручной прогон не делали
 e01s02: pending # разбор ссылки, DataStore, logout
 e02s01: pending # ядро: парсер + записи на дату (pure Kotlin)

@@ -1,0 +1,60 @@
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:generateDebugRFile UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:processDebugResources
+
+> Task :app:compileDebugKotlin FAILED
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:15:34 Unresolved reference 'icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:16:34 Unresolved reference 'icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:17:34 Unresolved reference 'icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:18:34 Unresolved reference 'icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:19:34 Unresolved reference 'icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:20:34 Unresolved reference 'icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:21:34 Unresolved reference 'icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:62:21 Unresolved reference 'Icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:63:28 Unresolved reference 'Icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:64:22 Unresolved reference 'Icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:140:18 Unresolved reference 'Icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:179:5 None of the following candidates is applicable:
+
+fun ModalDrawerSheet(modifier: Modifier = ..., drawerShape: Shape = ..., drawerContainerColor: Color = ..., drawerContentColor: Color = ..., drawerTonalElevation: Dp = ..., windowInsets: WindowInsets = ..., content: ComposableFunction1<ColumnScope, Unit>): Unit
+fun ModalDrawerSheet(drawerState: DrawerState, modifier: Modifier = ..., drawerShape: Shape = ..., drawerContainerColor: Color = ..., drawerContentColor: Color = ..., drawerTonalElevation: Dp = ..., windowInsets: WindowInsets = ..., content: ComposableFunction1<ColumnScope, Unit>): Unit:
+  No value passed for parameter 'drawerState'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:179:22 No parameter with name 'containerColor' found.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:180:9 @Composable invocations can only happen from the context of a @Composable function
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:197:35 Unresolved reference 'Icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:198:32 Unresolved reference 'Icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:199:40 Unresolved reference 'Icons'.
+e: file:///Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt:200:67 Unresolved reference 'Icons'.
+w: Detected multiple Kotlin daemon sessions at 
+
+[Incubating] Problems report is available at: file:///Users/kowie/Documents/Projects/GraDule/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin' (registered by plugin 'com.android.internal.application').
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Kotlin compiler: UNRESOLVED_IMPORT
+       Kotlin compiler error
+         Unresolved reference 'icons'.
+         Location: /Users/kowie/Documents/Projects/GraDule/app/src/main/java/com/virtualshape/gradule/ui/GraDuleApp.kt line 15
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
+31 actionable tasks: 2 executed, 29 up-to-date
+Configuration cache entry reused.
