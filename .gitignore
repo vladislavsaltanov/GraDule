@@ -138,3 +138,7 @@ captures/
 *.hprof
 *.apk
 *.aab
+
+### Local IDE noise (user-specific, do not share)
+.idea/codeStyles/
+.idea/inspectionProfiles/
