@@ -17,7 +17,7 @@ class ScheduleQueryTest {
 
         assertEquals(listOf("СР"), abbrs(ScheduleQuery.entriesOn(LocalDate.of(2026, 6, 16), entries)))
         assertEquals(listOf("МАТ"), abbrs(ScheduleQuery.entriesOn(LocalDate.of(2026, 6, 15), entries)))
-        assertEquals(listOf("МАТ"), abbrs(ScheduleQuery.entriesOn(LocalDate.of(2026, 6, 17), entries)))
+        assertEquals(emptyList<String>(), abbrs(ScheduleQuery.entriesOn(LocalDate.of(2026, 6, 17), entries)))
     }
 
     @Test
@@ -37,8 +37,8 @@ class ScheduleQueryTest {
     fun `parity anchor is odd iso week upper even lower`() {
         assertEquals(Parity.UPPER, ScheduleQuery.weekParity(UpperMonday))
         assertEquals(Parity.LOWER, ScheduleQuery.weekParity(LowerMonday))
-        assertEquals(Parity.UPPER, ScheduleQuery.weekParity(LocalDate.of(2026, 9, 28)))
-        assertEquals(Parity.LOWER, ScheduleQuery.weekParity(LocalDate.of(2026, 10, 5)))
+        assertEquals(Parity.LOWER, ScheduleQuery.weekParity(LocalDate.of(2026, 9, 28)))
+        assertEquals(Parity.UPPER, ScheduleQuery.weekParity(LocalDate.of(2026, 10, 5)))
     }
 
     @Test
@@ -55,7 +55,7 @@ class ScheduleQueryTest {
 
     @Test
     fun `subgroups stay inside one entry`() {
-        val subgroups = (1..5).map { Subgroup(it, it, "ИнЯз $it", "ИНЯЗ$it", "Преп $it", "120") }
+        val subgroups = (1..5).map { Subgroup(it.toLong(), it, "ИнЯз $it", "ИНЯЗ$it", "Преп $it", "120") }
         val entry = weekly(Parity.FULL, DayOfWeek.MONDAY, 8 * 60, "ИНЯЗ1", subgroups = subgroups)
 
         val onDate = ScheduleQuery.entriesOn(UpperMonday, listOf(entry))
