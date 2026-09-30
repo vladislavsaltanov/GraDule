@@ -22,7 +22,11 @@ object TimeslotParser {
         val tokens = raw.substring(1, raw.length - 1).split(',')
         if (tokens.size != 4) return null
         val day =
-            tokens[0].singleOrNull()?.digitToIntOrNull()?.takeIf { it in 0..5 }?.let { DayOfWeek.of(it + 1) } ?: return null
+            tokens[0]
+                .singleOrNull()
+                ?.digitToIntOrNull()
+                ?.takeIf { it in 0..5 }
+                ?.let { DayOfWeek.of(it + 1) } ?: return null
         val start = minuteOfDay(tokens[1]) ?: return null
         val end = minuteOfDay(tokens[2]) ?: return null
         if (end <= start) return null
