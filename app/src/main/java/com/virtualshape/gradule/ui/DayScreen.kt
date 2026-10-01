@@ -9,21 +9,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +29,7 @@ import com.virtualshape.gradule.domain.schedule.EntryKey
 import com.virtualshape.gradule.domain.schedule.LessonSlot
 import com.virtualshape.gradule.domain.schedule.LessonType
 import com.virtualshape.gradule.domain.schedule.LessonTypeClassifier
+import com.virtualshape.gradule.domain.schedule.Parity
 import com.virtualshape.gradule.domain.schedule.ScheduleEntry
 import com.virtualshape.gradule.domain.schedule.ScheduleQuery
 import com.virtualshape.gradule.domain.schedule.ScheduleSlots
@@ -48,18 +42,17 @@ import com.virtualshape.gradule.ui.theme.Ink
 import com.virtualshape.gradule.ui.theme.Lecture
 import com.virtualshape.gradule.ui.theme.Paper
 import com.virtualshape.gradule.ui.theme.Practice
-import com.virtualshape.gradule.ui.theme.White
 import java.time.LocalDate
 
 /**
  * Экран дня: список слотов по дизайну (docs/design/DESIGN.md, «Компоненты → Пара»).
+ * Дата живёт в каркасе (Shell.HeaderRow), экран только фильтрует по ней.
  * Данные приходят параметром — экран ничего не знает про сеть и хранилище.
  */
 @Composable
 fun DayScreen(
     state: SyncUiState<List<ScheduleEntry>>,
     date: LocalDate,
-    onDateChange: (LocalDate) -> Unit,
     modifier: Modifier = Modifier,
     subnumFilter: Int? = null,
     onSubnumChange: (Int?) -> Unit = {},
@@ -76,10 +69,9 @@ fun DayScreen(
     Column(
         modifier
             .fillMaxSize()
-            .padding(horizontal = 6.dp),
+            .padding(horizontal = 5.dp),
         verticalArrangement = Arrangement.spacedBy(15.dp),
     ) {
-        DateBar(date, onDateChange)
         if (subnums.size > 1) {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 FilterChip(
@@ -144,46 +136,16 @@ private fun SlotList(
 }
 
 @Composable
-private fun Centered(content: @Composable () -> Unit) {
+internal fun Centered(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit,
+) {
     Box(
-        Modifier
+        modifier
             .fillMaxSize()
             .padding(vertical = 24.dp),
         contentAlignment = Alignment.TopCenter,
     ) { content() }
-}
-
-/** Чип выбранной даты + переключение дней (свайп — отдельная задача). */
-@Composable
-private fun DateBar(
-    date: LocalDate,
-    onDateChange: (LocalDate) -> Unit,
-) {
-    Row(
-        Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        IconButton(onClick = { onDateChange(date.minusDays(1)) }) {
-            Icon(Icons.Filled.KeyboardArrowLeft, "предыдущий день", tint = Card)
-        }
-        Box(
-            Modifier
-                .weight(1f)
-                .background(Card, RoundedCornerShape(9.dp))
-                .padding(vertical = 8.dp),
-            contentAlignment = Alignment.Center,
-        ) {
-            Text(
-                DayLabel.of(date),
-                style = MaterialTheme.typography.titleMedium,
-                color = White,
-            )
-        }
-        TextButton(onClick = { onDateChange(LocalDate.now()) }) { Text("сегодня") }
-        IconButton(onClick = { onDateChange(date.plusDays(1)) }) {
-            Icon(Icons.Filled.KeyboardArrowRight, "следующий день", tint = Card)
-        }
-    }
 }
 
 /**
@@ -284,7 +246,7 @@ private fun typeAccent(type: LessonType): Color =
 @Composable
 private fun DayScreenPreview() {
     val today = LocalDate.of(2026, 6, 15)
-    val timeslot = Timeslot(today.dayOfWeek, 11 * 60 + 55, 13 * 60 + 30, com.virtualshape.gradule.domain.schedule.Parity.FULL)
+    val timeslot = Timeslot(today.dayOfWeek, 11 * 60 + 55, 13 * 60 + 30, Parity.FULL)
     val entries =
         (1..3).map { subnum ->
             ScheduleEntry(
@@ -308,6 +270,5 @@ private fun DayScreenPreview() {
     DayScreen(
         state = SyncUiState.Content(entries, updatedAt = 0L),
         date = today,
-        onDateChange = {},
     )
 }
