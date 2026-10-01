@@ -40,10 +40,22 @@ class ScheduleServerSetReplacementTest {
     @Test
     fun `vanished server entry is deleted`() {
         val store = InMemoryScheduleStore()
-        repository(store, json(payload(lesson(1, LOW_MONDAY), lesson(2, TUESDAY_FULL), curriculum(21, 1)))).load(groupKey)
+        repository(
+            store,
+            json(
+                payload(
+                    listOf(lesson(1, LOW_MONDAY), lesson(2, TUESDAY_FULL)),
+                    listOf(curriculum(11, 1), curriculum(12, 1), curriculum(21, 2)),
+                ),
+            ),
+        ).load(groupKey)
         assertEquals(3, store.entries().size)
 
-        val result = repository(store, json(payload(lesson(1, LOW_MONDAY), curriculum(11, 1), curriculum(12, 1)))).load(groupKey)
+        val result =
+            repository(
+                store,
+                json(payload(listOf(lesson(1, LOW_MONDAY)), listOf(curriculum(11, 1), curriculum(12, 1)))),
+            ).load(groupKey)
 
         assertEquals(GroupLoad.Loaded(185L, entries = 2, skippedLessons = 0, deleted = 1), result)
         assertEquals(listOf(EntryKey.Server(1, 11), EntryKey.Server(1, 12)), store.entries().map(ScheduleEntry::key))
@@ -54,7 +66,7 @@ class ScheduleServerSetReplacementTest {
         val store = InMemoryScheduleStore()
         store.upsert(listOf(localEntry("uuid-1")))
 
-        repository(store, json(payload(lesson(1, LOW_MONDAY), curriculum(11, 1)))).load(groupKey)
+        repository(store, json(payload(listOf(lesson(1, LOW_MONDAY)), listOf(curriculum(11, 1))))).load(groupKey)
 
         assertEquals(
             listOf(EntryKey.Local("uuid-1"), EntryKey.Server(1, 11)),
@@ -65,9 +77,9 @@ class ScheduleServerSetReplacementTest {
     @Test
     fun `note remap applied when lesson id changed under same human key`() {
         val store = InMemoryScheduleStore()
-        store.upsert(ScheduleMapper.map(payload(lesson(3085, MONDAY_UPPER), curriculum(5679, 3085, "ИнЯз"))).entries)
+        store.upsert(ScheduleMapper.map(payload(listOf(lesson(3085, MONDAY_UPPER)), listOf(curriculum(5679, 3085, "ИнЯз")))).entries)
 
-        repository(store, json(payload(lesson(9001, MONDAY_UPPER), curriculum(5679, 9001, "ИнЯз")))).load(groupKey)
+        repository(store, json(payload(listOf(lesson(9001, MONDAY_UPPER)), listOf(curriculum(5679, 9001, "ИнЯз"))))).load(groupKey)
 
         assertEquals(listOf(mapOf(EntryKey.Server(3085, 5679) to EntryKey.Server(9001, 5679))), store.appliedNoteRemaps)
         assertEquals(listOf(EntryKey.Server(9001, 5679)), store.entries().map(ScheduleEntry::key))
@@ -117,9 +129,9 @@ class ScheduleServerSetReplacementTest {
     ) = CurriculumDto(id = id, lessonid = lessonId, subnum = 1, subjectname = "Математика", subjectabbr = subjectAbbr, roomname = "101")
 
     private fun payload(
-        vararg lessons: LessonDto,
-        vararg curricula: CurriculumDto,
-    ) = SchedulePayload(lessons.toList(), curricula.toList())
+        lessons: List<LessonDto>,
+        curricula: List<CurriculumDto>,
+    ) = SchedulePayload(lessons, curricula)
 
     private fun json(payload: SchedulePayload) = Json.encodeToString(payload)
 
