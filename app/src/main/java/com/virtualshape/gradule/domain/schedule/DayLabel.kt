@@ -7,6 +7,14 @@ import java.time.LocalDate
 object DayLabel {
     fun of(date: LocalDate): String = "${dayName(date.dayOfWeek)} • ${parityName(ScheduleQuery.weekParity(date))}"
 
+    /** Минуты от полуночи → «ЧЧ:ММ» (дизайн: время пары). */
+    fun time(minuteOfDay: Int): String = "%02d:%02d".format(minuteOfDay / 60, minuteOfDay % 60)
+
+    fun timeRange(
+        startMinute: Int,
+        endMinute: Int,
+    ): String = "${time(startMinute)} - ${time(endMinute)}"
+
     private fun dayName(day: DayOfWeek): String =
         when (day) {
             DayOfWeek.MONDAY -> "понедельник"
