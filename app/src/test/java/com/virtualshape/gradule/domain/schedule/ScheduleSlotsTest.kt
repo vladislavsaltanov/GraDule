@@ -69,7 +69,7 @@ class ScheduleSlotsTest {
     private fun entry(
         subnum: Int,
         start: Int = 8 * 60,
-        end: Int = 9 * 60 + 35,
+        end: Int = 9 * 60 + 30,
         parity: Parity = Parity.FULL,
     ) = ScheduleEntry(
         key = EntryKey.Server(subnum.toLong(), subnum.toLong()),
