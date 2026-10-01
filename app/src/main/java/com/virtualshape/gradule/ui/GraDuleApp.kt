@@ -138,6 +138,7 @@ private fun Screen(
                 StatusCard(
                     title = tab.label,
                     state = SyncUiState.Empty(EmptyReason.NoData),
+                    modifier = Modifier.padding(horizontal = 5.dp),
                 )
             }
         }

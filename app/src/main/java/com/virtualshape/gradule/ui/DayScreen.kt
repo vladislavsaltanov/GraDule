@@ -140,12 +140,7 @@ internal fun Centered(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
-    Box(
-        modifier
-            .fillMaxSize()
-            .padding(vertical = 24.dp),
-        contentAlignment = Alignment.TopCenter,
-    ) { content() }
+    Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) { content() }
 }
 
 /**
