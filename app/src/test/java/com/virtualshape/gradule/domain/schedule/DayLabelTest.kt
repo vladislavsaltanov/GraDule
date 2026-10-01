@@ -1,11 +1,20 @@
 package com.virtualshape.gradule.domain.schedule
 
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.time.LocalDate
+import java.util.Locale
 
 /** Подпись экрана дня: день недели + чётность, якорь — [ScheduleQuery.weekParity]. */
 class DayLabelTest {
+    private val defaultLocale = Locale.getDefault()
+
+    @After
+    fun `restore locale`() {
+        Locale.setDefault(defaultLocale)
+    }
+
     @Test
     fun `upper week monday`() {
         assertEquals("понедельник • верхняя неделя", DayLabel.of(LocalDate.of(2026, 6, 15)))
@@ -51,5 +60,13 @@ class DayLabelTest {
     @Test
     fun `time range keeps the dash of the design`() {
         assertEquals("11:55 - 13:30", DayLabel.timeRange(11 * 60 + 55, 13 * 60 + 30))
+    }
+
+    @Test
+    fun `date chip is russian regardless of device locale`() {
+        Locale.setDefault(Locale.US) // на эмуляторе было «1 October • 2026»
+        assertEquals("1 октября • 2026", DayLabel.date(LocalDate.of(2026, 10, 1)))
+        assertEquals("15 июня • 2026", DayLabel.date(LocalDate.of(2026, 6, 15)))
+        assertEquals("5 января • 2026", DayLabel.date(LocalDate.of(2026, 1, 5)))
     }
 }
