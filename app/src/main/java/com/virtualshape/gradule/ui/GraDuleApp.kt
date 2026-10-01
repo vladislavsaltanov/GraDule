@@ -223,18 +223,35 @@ private fun Screen(
     tab: Tab,
     pad: PaddingValues,
 ) {
-    Column(
-        modifier =
-            Modifier
-                .fillMaxSize()
-                .padding(pad)
-                .padding(horizontal = 6.dp, vertical = 4.dp),
-        verticalArrangement = Arrangement.spacedBy(15.dp),
-    ) {
-        StatusCard(
-            title = tab.label,
-            state = SyncUiState.Empty(EmptyReason.NoData),
-        )
+    when (tab) {
+        Tab.Schedule -> {
+            // Выбор группы и загрузка — следующий срез; пока экран дня с честным пустым состоянием.
+            var dateText by rememberSaveable { mutableStateOf(LocalDate.now().toString()) }
+            var subnum by rememberSaveable { mutableStateOf<Int?>(null) }
+            DayScreen(
+                state = SyncUiState.Empty(EmptyReason.NoData),
+                date = LocalDate.parse(dateText),
+                onDateChange = { dateText = it.toString() },
+                modifier = Modifier.padding(pad),
+                subnumFilter = subnum,
+                onSubnumChange = { subnum = it },
+            )
+        }
+
+        else ->
+            Column(
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(pad)
+                        .padding(horizontal = 6.dp, vertical = 4.dp),
+                verticalArrangement = Arrangement.spacedBy(15.dp),
+            ) {
+                StatusCard(
+                    title = tab.label,
+                    state = SyncUiState.Empty(EmptyReason.NoData),
+                )
+            }
     }
 }
 
