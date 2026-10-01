@@ -70,7 +70,7 @@ fun DayScreen(
         modifier
             .fillMaxSize()
             .padding(horizontal = 5.dp),
-        verticalArrangement = Arrangement.spacedBy(15.dp),
+        verticalArrangement = Arrangement.spacedBy(5.dp),
     ) {
         if (subnums.size > 1) {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -120,7 +120,7 @@ fun DayScreen(
 @Composable
 private fun SlotList(
     slots: List<LessonSlot>,
-    contentPadding: PaddingValues = PaddingValues(bottom = 15.dp),
+    contentPadding: PaddingValues = PaddingValues(bottom = 5.dp),
 ) {
     if (slots.isEmpty()) {
         Centered { StatusCard("Расписание", SyncUiState.Empty(EmptyReason.NoData)) }
@@ -128,7 +128,7 @@ private fun SlotList(
     }
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(15.dp),
+        verticalArrangement = Arrangement.spacedBy(5.dp),
         contentPadding = contentPadding,
     ) {
         items(slots) { slot -> LessonSlotCard(slot) }
@@ -144,8 +144,8 @@ internal fun Centered(
 }
 
 /**
- * Карточка-папка: тёмная подложка, время на ней, лист бумаги с текстом
- * и цветной кромкой справа (тип занятия).
+ * Карточка-папка из прототипа (px/3): подложка, на ней лист в 3 dp от краёв
+ * с кромкой типа 6 dp; время — на тёмном поле над листом, в 20 dp от левого края.
  */
 @Composable
 private fun LessonSlotCard(
@@ -160,51 +160,58 @@ private fun LessonSlotCard(
             .fillMaxWidth()
             .shadow(4.dp, RoundedCornerShape(9.dp))
             .background(Card, RoundedCornerShape(9.dp))
-            .padding(start = 20.dp, end = 20.dp, top = 8.dp, bottom = 10.dp),
+            .padding(top = 8.dp, bottom = 10.dp),
     ) {
         Text(
             DayLabel.timeRange(slot.timeslot.startMinute, slot.timeslot.endMinute),
             style = MaterialTheme.typography.bodyMedium,
             color = Bg,
+            modifier = Modifier.padding(start = 20.dp),
         )
-        Row(Modifier.fillMaxWidth()) {
-            Column(
+        Row(Modifier.padding(start = 3.dp)) {
+            Box(
                 Modifier
                     .weight(1f)
-                    .background(Paper, RoundedCornerShape(topStart = 6.dp, bottomStart = 6.dp))
-                    .padding(horizontal = 18.dp, vertical = 14.dp),
+                    .background(Paper, RoundedCornerShape(topStart = 6.dp, bottomStart = 6.dp)),
             ) {
-                Text(
-                    subgroup?.subjectName.orEmpty(),
-                    style = MaterialTheme.typography.titleLarge,
-                    color = Ink,
-                )
-                if (slot.entries.size > 1) {
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(start = 15.dp, end = 15.dp, top = 5.dp, bottom = 5.dp),
+                ) {
                     Text(
-                        "подгрупп: ${slot.entries.size}",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Ink.copy(alpha = 0.65f),
+                        subgroup?.subjectName.orEmpty(),
+                        style = MaterialTheme.typography.titleLarge,
+                        color = Ink,
+                        maxLines = 2,
+                    )
+                    if (!subgroup?.teacherName.isNullOrBlank()) {
+                        Text(
+                            subgroup.teacherName,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Ink.copy(alpha = 0.65f),
+                        )
+                    }
+                    if (slot.entries.size > 1) {
+                        Text(
+                            "подгрупп: ${slot.entries.size}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Ink.copy(alpha = 0.65f),
+                        )
+                    }
+                    if (entry.info.isNotBlank()) {
+                        Text(
+                            entry.info,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Ink.copy(alpha = 0.65f),
+                        )
+                    }
+                    Text(
+                        placeAndType(subgroup?.roomName.orEmpty(), type),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Ink,
                     )
                 }
-                if (!subgroup?.teacherName.isNullOrBlank()) {
-                    Text(
-                        subgroup.teacherName,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Ink.copy(alpha = 0.65f),
-                    )
-                }
-                if (entry.info.isNotBlank()) {
-                    Text(
-                        entry.info,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Ink.copy(alpha = 0.65f),
-                    )
-                }
-                Text(
-                    placeAndType(subgroup?.roomName.orEmpty(), type),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Ink,
-                )
             }
             Box(
                 Modifier

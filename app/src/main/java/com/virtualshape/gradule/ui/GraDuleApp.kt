@@ -206,13 +206,13 @@ fun StatusCard(
             modifier
                 .fillMaxWidth()
                 .background(Card, RoundedCornerShape(9.dp))
-                .padding(10.dp),
+                .padding(top = 10.dp, bottom = 10.dp, start = 3.dp, end = 3.dp),
     ) {
         Column(
             Modifier
                 .fillMaxWidth()
                 .background(Paper, RoundedCornerShape(6.dp))
-                .padding(horizontal = 18.dp, vertical = 14.dp),
+                .padding(start = 15.dp, end = 15.dp, top = 10.dp, bottom = 10.dp),
         ) {
             Text(
                 title,
@@ -227,3 +227,4 @@ fun StatusCard(
         }
     }
 }
+
