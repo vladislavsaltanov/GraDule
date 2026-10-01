@@ -134,11 +134,15 @@ private fun Screen(
         }
 
         else -> {
-            Centered(Modifier.padding(pad)) {
+            Column(
+                Modifier
+                    .fillMaxSize()
+                    .padding(pad)
+                    .padding(horizontal = 5.dp),
+            ) {
                 StatusCard(
                     title = tab.label,
                     state = SyncUiState.Empty(EmptyReason.NoData),
-                    modifier = Modifier.padding(horizontal = 5.dp),
                 )
             }
         }
@@ -227,4 +231,3 @@ fun StatusCard(
         }
     }
 }
-

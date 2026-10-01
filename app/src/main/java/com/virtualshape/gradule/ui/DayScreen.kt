@@ -94,11 +94,11 @@ fun DayScreen(
             }
 
             is SyncUiState.Empty -> {
-                Centered { StatusCard("Расписание", state) }
+                StatusCard("Расписание", state)
             }
 
             is SyncUiState.FailedNoCache -> {
-                Centered { StatusCard("Расписание", state) }
+                StatusCard("Расписание", state)
             }
 
             is SyncUiState.StaleWithError -> {
@@ -123,7 +123,9 @@ private fun SlotList(
     contentPadding: PaddingValues = PaddingValues(bottom = 5.dp),
 ) {
     if (slots.isEmpty()) {
-        Centered { StatusCard("Расписание", SyncUiState.Empty(EmptyReason.NoData)) }
+        // Пустое состояние — туда же, где встанет первая карточка с данными,
+        // а не по центру экрана: прототип контент всегда кладёт от верха.
+        StatusCard("Расписание", SyncUiState.Empty(EmptyReason.NoData))
         return
     }
     LazyColumn(
