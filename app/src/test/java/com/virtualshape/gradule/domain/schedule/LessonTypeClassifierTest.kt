@@ -4,8 +4,9 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**
- * Тип занятия в дизайне («практика»/«лекция») в ответе БРС отсутствует —
- * выводим эвристикой из названия предмета.
+ * Тип занятия в дизайне («практика»/«лекция») в ответе schedule.sfedu.ru отсутствует:
+ * на живой фикстуре ни в названии, ни в сокращении маркеров нет. Поэтому выводим эвристикой
+ * и, если маркера нет, честно отдаём [LessonType.UNKNOWN], а не рисуем «лекцию».
  */
 class LessonTypeClassifierTest {
     @Test
@@ -14,8 +15,8 @@ class LessonTypeClassifierTest {
     }
 
     @Test
-    fun `practice word in brackets is not a lesson type`() {
-        assertEquals(LessonType.LECTURE, LessonTypeClassifier.of("Веб-программирование (практика)", "Веб-прог"))
+    fun `practice word in brackets counts`() {
+        assertEquals(LessonType.PRACTICE, LessonTypeClassifier.of("Веб-программирование (практика)", "Веб-прог"))
     }
 
     @Test
@@ -29,8 +30,15 @@ class LessonTypeClassifierTest {
     }
 
     @Test
-    fun `empty name is lecture`() {
-        assertEquals(LessonType.LECTURE, LessonTypeClassifier.of("", ""))
+    fun `seminar and practicum are practice`() {
+        assertEquals(LessonType.PRACTICE, LessonTypeClassifier.of("Семинар", ""))
+        assertEquals(LessonType.PRACTICE, LessonTypeClassifier.of("ПРАКТИКУМ", ""))
+    }
+
+    @Test
+    fun `case and yo do not matter`() {
+        assertEquals(LessonType.PRACTICE, LessonTypeClassifier.of("Практика", ""))
+        assertEquals(LessonType.PRACTICE, LessonTypeClassifier.of("Лабораторные работы", ""))
     }
 
     @Test
@@ -39,15 +47,15 @@ class LessonTypeClassifierTest {
     }
 
     @Test
-    fun `case and yo do not matter`() {
-        assertEquals(LessonType.PRACTICE, LessonTypeClassifier.of("ПРАКТИКУМ", ""))
-        assertEquals(LessonType.PRACTICE, LessonTypeClassifier.of("Семинар", ""))
-        assertEquals(LessonType.PRACTICE, LessonTypeClassifier.of("Практика", ""))
+    fun `empty name is unknown`() {
+        assertEquals(LessonType.UNKNOWN, LessonTypeClassifier.of("", ""))
     }
 
     @Test
-    fun `unknown name is lecture`() {
-        assertEquals(LessonType.LECTURE, LessonTypeClassifier.of("Иностранный язык", "ИнЯз"))
-        assertEquals(LessonType.LECTURE, LessonTypeClassifier.of("CS251. Технологии баз данных", "CS251. Техн БД"))
+    fun `real fixture names have no marker and stay unknown`() {
+        // ровно эти значения встречаются в schedule_group_185.json
+        assertEquals(LessonType.UNKNOWN, LessonTypeClassifier.of("Иностранный язык", "ИнЯз"))
+        assertEquals(LessonType.UNKNOWN, LessonTypeClassifier.of("Программирование", "Прогр-е"))
+        assertEquals(LessonType.UNKNOWN, LessonTypeClassifier.of("Дискретная математика", "Дискр Матем"))
     }
 }
