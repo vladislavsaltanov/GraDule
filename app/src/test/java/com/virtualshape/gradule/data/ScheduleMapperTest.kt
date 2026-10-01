@@ -72,7 +72,7 @@ class ScheduleMapperTest {
 
         assertEquals(5, subgroupEntries.size)
         assertEquals(1, subgroupEntries.map(ScheduleEntry::timeslot).toSet().size)
-        assertEquals(listOf(1L, 2L, 3L, 4L, 5L), subgroupEntries.map { (it.key as EntryKey.Server).curriculumId })
+        assertEquals(listOf(5679L, 5680L, 5681L, 5682L, 5683L), subgroupEntries.map { (it.key as EntryKey.Server).curriculumId })
         assertEquals(listOf(1, 2, 3, 4, 5), subgroupEntries.map { it.subgroups.single().subnum }.sorted())
         assertEquals(5, subgroupEntries.map { it.subgroups.single().roomName }.toSet().size)
     }
