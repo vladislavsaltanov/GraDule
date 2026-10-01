@@ -14,9 +14,6 @@ val Practice = Color(0xFFEE7747)
 val Lecture = Color(0xFF559A8A)
 val White = Color(0xFFFFFFFF)
 
-/** Чёрная полоса-статусбар из дизайна (36 dp). */
-val TopBar = Color(0xFF000000)
-
 // Тёмной темы в прототипах нет — выведена инверсией (см. DESIGN.md, «Отклонения»).
 private val CardNight = Color(0xFF2A2927)
 private val BgNight = Color(0xFF1A1A1A)

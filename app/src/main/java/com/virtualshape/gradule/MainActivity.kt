@@ -10,9 +10,9 @@ import com.virtualshape.gradule.ui.GraDuleApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Чёрная полоса статус-бара из дизайна → нужны светлые иконки.
+        // Фон приложения проходит под статус-баром; для светлого фона нужны тёмные системные значки.
         enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.dark(TRANSPARENT),
+            statusBarStyle = SystemBarStyle.light(TRANSPARENT, TRANSPARENT),
             navigationBarStyle = SystemBarStyle.dark(TRANSPARENT),
         )
         super.onCreate(savedInstanceState)
