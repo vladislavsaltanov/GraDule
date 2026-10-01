@@ -3,6 +3,7 @@ package com.virtualshape.gradule.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -21,15 +22,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.virtualshape.gradule.domain.schedule.DayLabel
 import com.virtualshape.gradule.domain.schedule.EntryKey
 import com.virtualshape.gradule.domain.schedule.LessonSlot
@@ -153,7 +159,7 @@ private fun LessonCard(
     val type = LessonTypeClassifier.of(subgroup?.subjectName.orEmpty(), subgroup?.subjectAbbr.orEmpty())
     val edge = if (type == LessonType.PRACTICE) Practice else Lecture
 
-// Фрейм карточки — колонка: подложка 100 dp + 20 px (6.67 dp) низа, иначе
+    // Фрейм карточки — колонка: подложка 100 dp + 20 px (6.67 dp) низа, иначе
     // Spacer лёг бы поверх Box и шаг стал бы 315 px вместо 335 px из Figma.
     Column(modifier.fillMaxWidth().clip(RoundedCornerShape(6.67.dp))) {
         CardSubstrate(height = 100.dp) {
@@ -168,7 +174,7 @@ private fun LessonCard(
                         .fillMaxWidth()
                         .offset(y = 5.17.dp),
             )
-            Box(
+            BoxWithConstraints(
                 Modifier
                     .align(Alignment.TopStart)
                     .offset(y = 23.33.dp)
@@ -178,14 +184,16 @@ private fun LessonCard(
                     .background(Paper, RoundedCornerShape(8.dp))
                     .edgeStripe(edge),
             ) {
+                val subject = subgroup?.subjectName.orEmpty()
+                val titleStyle = disciplineTitleStyle(subject, maxWidth)
                 Column(
                     Modifier
                         .fillMaxSize()
                         .padding(start = 11.67.dp, top = 6.67.dp, bottom = 6.67.dp),
                 ) {
                     Text(
-                        subgroup?.subjectName.orEmpty(),
-                        style = MaterialTheme.typography.titleLarge,
+                        subject,
+                        style = titleStyle,
                         color = Ink,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
@@ -206,6 +214,24 @@ private fun LessonCard(
         // 20 px (6.67 dp) низа фрейма + зазор 15 px (5 dp) между карточками.
         Spacer(Modifier.height(6.67.dp))
     }
+}
+
+/**
+ * Заголовок дисциплины: влезает в одну строку — крупнее (72 px / 25 sp), иначе
+ * 60 px с плотным интерлиньяжем 21 sp. Решает [rememberTextMeasurer] по фактической
+ * ширине бокса из макета (1003 px от листа 1070 px), а не по числу символов.
+ */
+@Composable
+private fun disciplineTitleStyle(
+    subject: String,
+    sheetWidth: Dp,
+): TextStyle {
+    val base = MaterialTheme.typography.titleLarge
+    val big = base.copy(fontSize = 24.sp, lineHeight = 25.sp)
+    val boxWidthPx = with(LocalDensity.current) { sheetWidth.toPx() * (1003f / 1070f) }
+    val measurer = rememberTextMeasurer()
+    val fitsOneLine = measurer.measure(subject, big, maxLines = 1).size.width <= boxWidthPx
+    return if (fitsOneLine) big else base.copy(lineHeight = 21.sp)
 }
 
 /**
