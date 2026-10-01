@@ -4,10 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -170,7 +173,11 @@ private fun LessonSlotCard(
             color = Bg,
             modifier = Modifier.padding(start = 20.dp),
         )
-        Row(Modifier.padding(start = 3.dp)) {
+        Row(
+            Modifier
+                .padding(start = 3.dp)
+                .height(IntrinsicSize.Min),
+        ) {
             Box(
                 Modifier
                     .weight(1f)
@@ -218,6 +225,7 @@ private fun LessonSlotCard(
             Box(
                 Modifier
                     .width(6.dp)
+                    .fillMaxHeight()
                     .background(typeAccent(type), RoundedCornerShape(topEnd = 6.dp, bottomEnd = 6.dp)),
             )
         }
@@ -239,10 +247,11 @@ private fun placeAndType(
 }
 
 /** Типа в API нет: UNKNOWN рисуем нейтральной кромкой, а не выдуманной лекцией. */
+/** Кромка 6 dp: lecture teal — дефолт по DESIGN.md, в API типа занятия нет. */
 private fun typeAccent(type: LessonType): Color =
     when (type) {
         LessonType.PRACTICE -> Practice
-        LessonType.LECTURE -> Lecture
+        LessonType.LECTURE, LessonType.UNKNOWN -> Lecture
         LessonType.UNKNOWN -> Paper
     }
 

@@ -70,7 +70,13 @@ class SqliteScheduleStore(
         val entries = mutableListOf<ScheduleEntry>()
         readableDatabase.query(TABLE_ENTRIES, null, null, null, null, null, "start_minute ASC").use { cursor ->
             while (cursor.moveToNext()) {
-                val key = decodeKey(cursor.getString(0))
+                // Битая строка кэша не должна ронять весь экран: пропуск, перезапишется при следующей загрузке.
+                val key =
+                    try {
+                        decodeKey(cursor.getString(0))
+                    } catch (e: Exception) {
+                        continue
+                    }
                 val onceDate = cursor.getString(7)?.let { LocalDate.parse(it) }
                 entries +=
                     ScheduleEntry(
@@ -182,9 +188,9 @@ class SqliteScheduleStore(
 
     private fun encodeKey(key: EntryKey): String =
         when (key) {
-            is EntryKey.Server -> "S:$key.lessonId:$key.curriculumId"
-            is EntryKey.Local -> "L:$key.uuid"
-            is EntryKey.Derived -> "D:$key.day:${key.startMinute}:${key.parity}:${key.subjectAbbr}:${key.subnum}"
+            is EntryKey.Server -> "S:${key.lessonId}:${key.curriculumId}"
+            is EntryKey.Local -> "L:${key.uuid}"
+            is EntryKey.Derived -> "D:${key.day}:${key.startMinute}:${key.parity}:${key.subjectAbbr}:${key.subnum}"
         }
 
     private fun decodeKey(encoded: String): EntryKey {

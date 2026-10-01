@@ -29,23 +29,37 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.virtualshape.gradule.data.GroupKey
+import com.virtualshape.gradule.data.GroupLoad
+import com.virtualshape.gradule.data.OkHttpHttpGet
+import com.virtualshape.gradule.data.ScheduleRepository
+import com.virtualshape.gradule.data.SqliteScheduleStore
 import com.virtualshape.gradule.domain.schedule.DayLabel
+import com.virtualshape.gradule.domain.schedule.ScheduleEntry
 import com.virtualshape.gradule.ui.theme.Bg
 import com.virtualshape.gradule.ui.theme.Card
 import com.virtualshape.gradule.ui.theme.GraDuleTheme
 import com.virtualshape.gradule.ui.theme.Ink
 import com.virtualshape.gradule.ui.theme.Paper
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.time.LocalDate
+
+/** Дефолтная группа до экрана выбора: ММ и ИИ, 1 курс, группа 7 (id 185). */
+private val DEFAULT_GROUP = GroupKey(gradeId = 1, num = 7, name = "ММ и ИИ")
 
 /** Три экрана внизу (story e01s01); остальное — drawer. */
 enum class Tab(
@@ -110,12 +124,8 @@ fun GraDuleApp() {
     }
 }
 
-/** Подпись панели: у расписания — день и чётность недели, иначе имя приложения. */
-private fun Tab.caption(date: LocalDate): String =
-    when (this) {
-        Tab.Schedule -> DayLabel.of(date)
-        else -> "GraDule"
-    }
+/** Подпись панели — день и чётность недели, как в прототипе. */
+private fun Tab.caption(date: LocalDate): String = DayLabel.of(date)
 
 /** До e02/e03 тут пустые состояния — честные, не «тихие» (story e01s01). */
 @Composable
@@ -126,8 +136,40 @@ private fun Screen(
 ) {
     when (tab) {
         Tab.Schedule -> {
+            // ponytail: дефолтная группа до экрана выбора (остаток e02s02).
+            val context = LocalContext.current
+            val store = remember { SqliteScheduleStore(context.applicationContext) }
+            val repository = remember { ScheduleRepository(OkHttpHttpGet(), store) }
+            var schedule by remember { mutableStateOf<SyncUiState<List<ScheduleEntry>>>(SyncUiState.Loading) }
+            LaunchedEffect(Unit) {
+                schedule =
+                    withContext(Dispatchers.IO) {
+                        val cached = store.entries()
+                        try {
+                            when (repository.load(DEFAULT_GROUP)) {
+                                is GroupLoad.Loaded -> {
+                                    SyncUiState.Content(store.entries(), System.currentTimeMillis())
+                                }
+
+                                is GroupLoad.Unresolved -> {
+                                    if (cached.isEmpty()) {
+                                        SyncUiState.FailedNoCache("группа исчезла из справочника")
+                                    } else {
+                                        SyncUiState.StaleWithError(cached, System.currentTimeMillis(), "группа исчезла из справочника")
+                                    }
+                                }
+                            }
+                        } catch (e: Exception) {
+                            if (cached.isEmpty()) {
+                                SyncUiState.FailedNoCache(e.message ?: "сеть недоступна")
+                            } else {
+                                SyncUiState.StaleWithError(cached, System.currentTimeMillis(), e.message ?: "сеть недоступна")
+                            }
+                        }
+                    }
+            }
             DayScreen(
-                state = SyncUiState.Empty(EmptyReason.NoData),
+                state = schedule,
                 date = date,
                 modifier = Modifier.padding(pad),
             )
