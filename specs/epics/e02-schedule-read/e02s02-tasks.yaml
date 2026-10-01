@@ -1,13 +1,13 @@
 story_id: e02s02
 title: "Выбор группы + экран дня"
-status: failing
+status: implemented
 bcps: 5
 tasks:
   - id: 1
     description: "Group-resolve + загрузка + замена SERVER"
     verify: "./gradlew :app:testDebugUnitTest"
     risk: P0
-    status: failing
+    status: passing
     allure:
       severity: critical
       categories: ["schedule", "unit", "integration"]
@@ -15,7 +15,8 @@ tasks:
     description: "Экран дня + подгруппы + состояния"
     verify: "./gradlew :app:assembleDebug"
     risk: P1
-    status: failing
-    allure:
-      severity: high
-      categories: ["schedule", "ui"]
+    status: partial
+    note: >-
+      экран дня, фильтр подгрупп и состояния собраны, но без UI-выбора
+      группы и живой загрузки — приложение отдаёт честное пустое
+      состояние.

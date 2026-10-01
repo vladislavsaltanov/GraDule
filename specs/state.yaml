@@ -1,7 +1,7 @@
 session:
   date: "2026-09-30"
-  active_flow: e01s01
-  epic: e01
+  active_flow: e02s02
+  epic: e02
 workflow_mode: solo-git
 vcs:
   kind: git
@@ -19,9 +19,8 @@ design:
     - docs/design/grades.html
     - docs/design/grade-changes.html
 handoff:
-  next_skill: verify-work
+  next_skill: develop-tdd
   note: >-
-    e01s01 кодом готов (сборка + 5 юнит-тестов зелёные), ручного
-    прогона на устройстве не было. Дальше по плану: e02s01 (ядро парсера,
-    pure Kotlin, токен не нужен) или e00s02 — для него нужен BRS_TOKEN
-    в .env.
+    e02s01 закрыт (ядро, 62 теста). e02s02 наполовину: данные и экран
+    дня готовы, нет UI-выбора группы и живой загрузки в приложение.
+    Дальше: e01s02 (ссылка+DataStore) или e03s01 (нужен BRS_TOKEN).

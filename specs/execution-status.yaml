@@ -4,7 +4,7 @@ e00s02: passing # грамматика timeslot подтверждена на 60
 e01s01: implemented # сборка+тесты зелёные, ручной прогон не делали
 e01s02: pending # разбор ссылки, DataStore, logout
 e02s01: passing # ядро: парсер timeslot, entriesOn(date), reconcile-план
-e02s02: pending # выбор группы + экран дня + подгруппы
+e02s02: implemented # экран дня есть, нет UI выбора группы и живой загрузки
 e03s01: pending # семестры + дисциплины + детали
 e03s02: pending # лента событий (после e00s01)
 e04s01: pending # LOCAL + заметки на вхождения + напоминания + архив
