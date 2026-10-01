@@ -43,6 +43,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.virtualshape.gradule.domain.schedule.DayLabel
 import com.virtualshape.gradule.ui.theme.Bg
 import com.virtualshape.gradule.ui.theme.Card
 import com.virtualshape.gradule.ui.theme.GraDuleTheme
@@ -51,8 +52,6 @@ import com.virtualshape.gradule.ui.theme.Paper
 import com.virtualshape.gradule.ui.theme.White
 import kotlinx.coroutines.launch
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 /** Три экрана внизу (story e01s01); остальное — drawer. */
 private enum class Tab(
@@ -151,7 +150,7 @@ private fun TopBar(onMenu: () -> Unit) {
 @Composable
 private fun DateChip(modifier: Modifier = Modifier) {
     val today = LocalDate.now()
-    val text = "${today.format(DateTimeFormatter.ofPattern("d MMMM", Locale.getDefault()))} • ${today.year}"
+    val text = DayLabel.date(today)
     Box(
         modifier =
             modifier
