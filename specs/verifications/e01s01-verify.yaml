@@ -1,0 +1,57 @@
+story_id: e01s01
+verified_at: "2026-10-01T17:55:00Z"
+verifier: verify-work
+device: "Pixel 10 Pro AVD, Android 17 (API 37.1), 1280x2856 @480dpi = 426x952 dp"
+design_ref: docs/design/DESIGN.md
+phases:
+  smoke:
+    passed: true
+    note: "cold start: force-stop + am start, экран в фокусе (mCurrentFocus=MainActivity)"
+  build:
+    passed: true
+    command: "./gradlew :app:assembleDebug"
+  tests:
+    passed: true
+    command: "./gradlew :app:testDebugUnitTest"
+    count: 63
+  terminal_verdict:
+    command: "./gradlew :app:testDebugUnitTest :app:installDebug"
+    exit_code: 0
+    captured_at: "2026-10-01T17:55:00Z"
+    note: "один прогон; installDebug на эмулятор прошёл вместе с тестами"
+manual:
+  method: "uiautomator dump (координаты нод) + попиксельный разбор PNG (карта цветов)"
+  steps:
+    - step: "Чёрная полоса статус-бара"
+      expected: "36 dp по дизайну, не ниже выреза устройства"
+      actual: "0..56 dp; mDisplayCutout=156px (52 dp), берём max(36 dp, вырез)"
+      passed: true
+    - step: "Шапка: круг-меню, чип даты, круг-аватар"
+      expected: "33 dp по высоте, чип между кругами, поля 9 dp"
+      actual: "чип даты x=128..299 dp, текст 18 sp; полоса шапки y=216..336 px"
+      passed: true
+    - step: "Плавающая нижняя панель"
+      expected: "271 dp шириной, r=11 dp, подпись сверху, светлый рельс, тёмный слот активной вкладки"
+      actual: "контейнер 271 dp (x=78..349), подпись 8.3 dp, иконки 16 dp, рельс P + активный слот K, чёрная полоса снизу до края экрана"
+      passed: true
+    - step: "Подпись панели на расписании"
+      expected: "«понедельник • верхняя неделя»"
+      actual: "«четверг • нижняя неделя» — дата 2026-10-01 совпадает с ISO-неделей 40 (чётная)"
+      passed: true
+    - step: "Карточка-папка"
+      expected: "тёмная подложка r=9 dp, лист r=6 dp, заголовок 18 sp"
+      actual: "K-подложка с P-листом, заголовок 21 dp по высоте, статус 10.7 dp (9 sp) под ним, не в одной строке"
+      passed: true
+    - step: "Локаль даты"
+      expected: "русский месяц независимо от локали устройства"
+      actual: "«1 октября • 2026» на эмуляторе с en-US; тест с Locale.US"
+      passed: true
+    - step: "Поля и центр пустого состояния"
+      expected: "карточка с полями 5 dp, по центру вертикали (как блок, а не сирота сверху)"
+      actual: "карточка 5..421 dp по ширине, центр по вертикали (y≈448..528 dp на экране 952 dp)"
+      passed: true
+gaps:
+  - "нет данных расписания: выбор группы и живая загрузка — вне этой правки (e02s02)"
+  - "дизайн рисует 4 иконки в панели, у нас 3 таба — расхождение осознанное"
+  - "вырез 52 dp делает верхнюю полосу выше дизайнерских 36 dp — геометрия устройства"
+closed: true
