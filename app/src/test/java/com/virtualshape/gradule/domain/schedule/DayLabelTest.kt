@@ -40,4 +40,16 @@ class DayLabelTest {
             assertEquals(expected, DayLabel.of(date).substringAfter("• "))
         }
     }
+
+    @Test
+    fun `time renders minutes of day as hh mm`() {
+        assertEquals("00:00", DayLabel.time(0))
+        assertEquals("08:15", DayLabel.time(8 * 60 + 15))
+        assertEquals("23:59", DayLabel.time(23 * 60 + 59))
+    }
+
+    @Test
+    fun `time range keeps the dash of the design`() {
+        assertEquals("11:55 - 13:30", DayLabel.timeRange(11 * 60 + 55, 13 * 60 + 30))
+    }
 }
