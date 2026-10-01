@@ -238,7 +238,7 @@ private fun Screen(
             )
         }
 
-        else ->
+        else -> {
             Column(
                 modifier =
                     Modifier
@@ -252,6 +252,7 @@ private fun Screen(
                     state = SyncUiState.Empty(EmptyReason.NoData),
                 )
             }
+        }
     }
 }
 
