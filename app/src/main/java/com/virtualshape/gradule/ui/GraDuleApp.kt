@@ -28,10 +28,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.virtualshape.gradule.data.GroupKey
 import com.virtualshape.gradule.data.GroupLoad
 import com.virtualshape.gradule.data.OkHttpHttpGet
 import com.virtualshape.gradule.data.ScheduleRepository
+import com.virtualshape.gradule.data.ScheduleTarget
 import com.virtualshape.gradule.data.SqliteScheduleStore
 import com.virtualshape.gradule.domain.schedule.DayLabel
 import com.virtualshape.gradule.domain.schedule.ScheduleEntry
@@ -42,9 +42,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
-
-/** Дефолтная группа до экрана выбора: ММ и ИИ, 1 курс, группа 7 (id 185). */
-private val DEFAULT_GROUP = GroupKey(gradeId = 1, num = 7, name = "ММ и ИИ")
 
 /**
  * Вкладки в порядке дока Figma: слот 1 активен на ScheduleScreenNew (76:187),
@@ -142,7 +139,6 @@ private fun ScheduleTab(
     date: LocalDate,
     refreshKey: Int,
 ) {
-    // ponytail: дефолтная группа до экрана выбора (остаток e02s02).
     val context = LocalContext.current
     val store = remember { SqliteScheduleStore(context.applicationContext) }
     val repository = remember { ScheduleRepository(OkHttpHttpGet(), store) }
@@ -152,7 +148,7 @@ private fun ScheduleTab(
             withContext(Dispatchers.IO) {
                 val cached = store.entries()
                 try {
-                    when (repository.load(DEFAULT_GROUP)) {
+                    when (repository.load(ScheduleTarget.DEFAULT)) {
                         is GroupLoad.Loaded -> {
                             SyncUiState.Content(store.entries(), System.currentTimeMillis())
                         }
