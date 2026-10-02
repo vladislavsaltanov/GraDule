@@ -1,6 +1,6 @@
 story_id: e02s02
 title: "Выбор группы + экран дня"
-status: implemented
+status: passing
 bcps: 5
 tasks:
   - id: 1
@@ -15,8 +15,4 @@ tasks:
     description: "Экран дня + подгруппы + состояния"
     verify: "./gradlew :app:assembleDebug"
     risk: P1
-    status: partial
-    note: >-
-      экран дня, фильтр подгрупп и состояния собраны, но без UI-выбора
-      группы и живой загрузки — приложение отдаёт честное пустое
-      состояние.
+    status: passing

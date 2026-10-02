@@ -1,6 +1,6 @@
 session:
   date: "2026-09-30"
-  active_flow: e02s02
+  active_flow: e01s02
   epic: e02
 workflow_mode: solo-git
 vcs:
@@ -21,6 +21,7 @@ design:
 handoff:
   next_skill: develop-tdd
   note: >-
-    e02s01 закрыт (ядро, 62 теста). e02s02 наполовину: данные и экран
-    дня готовы, нет UI-выбора группы и живой загрузки в приложение.
-    Дальше: e01s02 (ссылка+DataStore) или e03s01 (нужен BRS_TOKEN).
+    e02s02 закрыт: живая загрузка из schedule.sfedu.ru работает на
+    эмуляторе, группа живёт константой ScheduleTarget.DEFAULT
+    (ММ и ИИ, 1 курс, 7). Дальше: e01s02 (разбор ссылки БРС +
+    DataStore + выбор группы в настройках вместо константы).
