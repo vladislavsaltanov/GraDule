@@ -15,11 +15,11 @@ class ScheduleTargetTest {
             GroupResolver(
                 FixtureHttpGet(
                     mapOf(
-                        ScheduleApi.groupsForGrade(ScheduleTarget.DEFAULT.gradeId) to FixtureHttpGet.fixture("group_for_grade_1.json"),
+                        ScheduleApi.groupsForGrade(ScheduleTarget.DEFAULT.gradeId) to FixtureHttpGet.fixture("group_for_grade_3.json"),
                     ),
                 ),
             )
 
-        assertEquals(185L, resolver.resolve(ScheduleTarget.DEFAULT))
+        assertEquals(116L, resolver.resolve(ScheduleTarget.DEFAULT))
     }
 }
