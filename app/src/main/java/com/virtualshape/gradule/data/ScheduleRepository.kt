@@ -1,6 +1,9 @@
 package com.virtualshape.gradule.data
 
 import com.virtualshape.gradule.domain.schedule.ScheduleReconcile
+import com.virtualshape.gradule.domain.schedule.Parity
+import com.virtualshape.gradule.domain.schedule.WeekAnchor
+import java.time.LocalDate
 
 /** Итог загрузки: записи записаны, либо группу надо перевыбрать (id исчез/сменился). */
 sealed interface GroupLoad {
@@ -28,6 +31,16 @@ class ScheduleRepository(
 
     /** id группы по human-ключу; `null` — направления/номера больше нет, нужен выбор заново. */
     fun resolveGroup(key: GroupKey): Long? = groups.resolve(key)
+
+    /**
+     * Якорь чётности недели с сервера: `/APIv1/week`, чётное значение — верхняя неделя.
+     * Значение привязываем к [today] устройства — иначе выбранной дате не с чем сравнить чётность.
+     */
+    fun weekAnchor(today: LocalDate): WeekAnchor {
+        val url = ScheduleApi.week()
+        val week = ScheduleJson.decodeWeek(http.get(url), url).week
+        return WeekAnchor(today, if (week % 2 == 0) Parity.UPPER else Parity.LOWER)
+    }
 
     /** Загрузка и замена SERVER-набора. Ошибка сети/разбора — [ScheduleDataException], хранилище не трогаем. */
     fun load(key: GroupKey): GroupLoad {

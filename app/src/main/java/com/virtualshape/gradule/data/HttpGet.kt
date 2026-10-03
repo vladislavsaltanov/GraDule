@@ -17,6 +17,9 @@ object ScheduleApi {
     fun groupsForGrade(gradeId: Long): String = "$BASE_URL/group/forGrade/$gradeId"
 
     fun scheduleForGroup(groupId: Long): String = "$BASE_URL/schedule/group/$groupId"
+
+    /** Текущая неделя семестра: чётное значение — верхняя, нечётное — нижняя. */
+    fun week(): String = "$BASE_URL/week"
 }
 
 /** Реализация [HttpGet] на OkHttp. */

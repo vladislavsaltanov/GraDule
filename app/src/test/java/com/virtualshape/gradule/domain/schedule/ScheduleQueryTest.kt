@@ -29,17 +29,18 @@ class ScheduleQueryTest {
                 weekly(Parity.LOWER, DayOfWeek.MONDAY, 10 * 60, "LOWER"),
             )
 
-        assertEquals(listOf("FULL", "UPPER"), abbrs(ScheduleQuery.entriesOn(UpperMonday, entries, Anchor)))
-        assertEquals(listOf("FULL", "LOWER"), abbrs(ScheduleQuery.entriesOn(LowerMonday, entries, Anchor)))
+        assertEquals(listOf("FULL", "UPPER"), abbrs(ScheduleQuery.entriesOn(UpperMonday, entries, June)))
+        assertEquals(listOf("FULL", "LOWER"), abbrs(ScheduleQuery.entriesOn(LowerMonday, entries, June)))
     }
 
     @Test
     fun `parity follows the server anchor not the iso week number`() {
         // 2026-10-02 — ISO-неделя 40, чётная: старая гипотеза дала бы LOWER. Сервер говорит UPPER.
         assertEquals(Parity.UPPER, ScheduleQuery.weekParity(Fri, Anchor))
-        assertEquals(Parity.UPPER, ScheduleQuery.weekParity(Fri.plusDays(4), Anchor))
+        assertEquals(Parity.UPPER, ScheduleQuery.weekParity(Fri.minusDays(2), Anchor))
+        assertEquals(Parity.LOWER, ScheduleQuery.weekParity(Fri.plusDays(3), Anchor))
         assertEquals(Parity.LOWER, ScheduleQuery.weekParity(Fri.plusDays(7), Anchor))
-        assertEquals(Parity.UPPER, ScheduleQuery.weekParity(Fri.plusDays(14), Anchor))
+        assertEquals(Parity.UPPER, ScheduleQuery.weekParity(Fri.plusDays(10), Anchor))
     }
 
     @Test
@@ -66,7 +67,7 @@ class ScheduleQueryTest {
                 weekly(Parity.FULL, DayOfWeek.MONDAY, 8 * 60, "А"),
             )
 
-        assertEquals(listOf("А", "Я", "З"), abbrs(ScheduleQuery.entriesOn(UpperMonday, entries, Anchor)))
+        assertEquals(listOf("А", "Я", "З"), abbrs(ScheduleQuery.entriesOn(UpperMonday, entries, June)))
     }
 
     @Test
@@ -74,7 +75,7 @@ class ScheduleQueryTest {
         val subgroups = (1..5).map { Subgroup(it.toLong(), it, "ИнЯз $it", "ИНЯЗ$it", "Преп $it", "120") }
         val entry = weekly(Parity.FULL, DayOfWeek.MONDAY, 8 * 60, "ИНЯЗ1", subgroups = subgroups)
 
-        val onDate = ScheduleQuery.entriesOn(UpperMonday, listOf(entry), Anchor)
+        val onDate = ScheduleQuery.entriesOn(UpperMonday, listOf(entry), June)
 
         assertEquals(1, onDate.size)
         assertEquals(5, onDate[0].subgroups.size)
@@ -85,7 +86,7 @@ class ScheduleQueryTest {
     fun `info is delivered with the time`() {
         val entry = weekly(Parity.UPPER, DayOfWeek.MONDAY, 8 * 60, "МАТ", info = "с 01.11.2026")
 
-        val onDate = ScheduleQuery.entriesOn(UpperMonday, listOf(entry), Anchor)
+        val onDate = ScheduleQuery.entriesOn(UpperMonday, listOf(entry), June)
 
         assertEquals(1, onDate.size)
         assertEquals("с 01.11.2026", onDate[0].info)
@@ -102,11 +103,11 @@ class ScheduleQueryTest {
                 subgroups = listOf(Subgroup(1, 1, "Доп", "ДОП", "Преп", "10")),
             )
 
-        val onDate = ScheduleQuery.entriesOn(UpperMonday, listOf(local), Anchor)
+        val onDate = ScheduleQuery.entriesOn(UpperMonday, listOf(local), June)
 
         assertEquals(1, onDate.size)
         assertEquals("Доп", onDate[0].subgroups.first().subjectName)
-        assertFalse(ScheduleQuery.entriesOn(LowerMonday, listOf(local), Anchor).isEmpty())
+        assertFalse(ScheduleQuery.entriesOn(LowerMonday, listOf(local), June).isEmpty())
     }
 
     private fun abbrs(entries: List<ScheduleEntry>) = entries.map { it.subgroups.first().subjectAbbr }
@@ -143,5 +144,6 @@ class ScheduleQueryTest {
         val LowerMonday = LocalDate.of(2026, 6, 22)
         val Fri = LocalDate.of(2026, 10, 2)
         val Anchor = WeekAnchor(Fri, Parity.UPPER)
+        val June = WeekAnchor(UpperMonday, Parity.UPPER)
     }
 }

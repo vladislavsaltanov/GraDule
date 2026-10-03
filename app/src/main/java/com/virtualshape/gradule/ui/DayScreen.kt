@@ -48,6 +48,7 @@ import com.virtualshape.gradule.domain.schedule.ScheduleSlots
 import com.virtualshape.gradule.domain.schedule.Source
 import com.virtualshape.gradule.domain.schedule.Subgroup
 import com.virtualshape.gradule.domain.schedule.Timeslot
+import com.virtualshape.gradule.domain.schedule.WeekAnchor
 import com.virtualshape.gradule.ui.theme.Bg
 import com.virtualshape.gradule.ui.theme.Ink
 import com.virtualshape.gradule.ui.theme.Lecture
@@ -67,10 +68,11 @@ import java.time.LocalDate
 fun DayScreen(
     state: SyncUiState<List<ScheduleEntry>>,
     date: LocalDate,
+    anchor: WeekAnchor,
     modifier: Modifier = Modifier,
 ) {
     val entries = (state as? SyncUiState.Content)?.data ?: (state as? SyncUiState.StaleWithError)?.data
-    val slots = entries?.let { ScheduleSlots.group(ScheduleQuery.entriesOn(date, it), subnum = null) }.orEmpty()
+    val slots = entries?.let { ScheduleSlots.group(ScheduleQuery.entriesOn(date, it, anchor), subnum = null) }.orEmpty()
 
     Box(modifier.fillMaxSize()) {
         when (state) {
@@ -276,6 +278,7 @@ private fun DayScreenPreview() {
             "Основы компьютерных наук и искусственного интеллекта",
         )
     DayScreen(
+        anchor = WeekAnchor(today, Parity.UPPER),
         state =
             SyncUiState.Content(
                 subjects.mapIndexed { index, subject ->

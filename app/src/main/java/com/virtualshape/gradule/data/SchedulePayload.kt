@@ -22,6 +22,11 @@ object ScheduleJson {
         url: String,
     ): SchedulePayload = decode(body, url)
 
+    fun decodeWeek(
+        body: String,
+        url: String,
+    ): WeekDto = decode(body, url)
+
     private inline fun <reified T> decode(
         body: String,
         url: String,
@@ -34,6 +39,12 @@ object ScheduleJson {
             throw ScheduleDataException("пустой или битый ответ $url: ${e.message}", url, e)
         }
 }
+
+/** Ответ `/week`: номер текущей недели; чётное значение — верхняя, нечётное — нижняя. */
+@Serializable
+data class WeekDto(
+    val week: Int = 0,
+)
 
 /** Ответ `/schedule/group/{groupId}`: занятия + curricula (подгруппы), связь `curricula.lessonid → lessons.id`. */
 @Serializable

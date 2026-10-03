@@ -9,7 +9,10 @@ private val RUSSIAN = Locale("ru")
 
 /** Подпись выбранного дня: «понедельник • верхняя неделя» (docs/design/DESIGN.md, подпись навбара). */
 object DayLabel {
-    fun of(date: LocalDate): String = "${dayName(date.dayOfWeek)} • ${parityName(ScheduleQuery.weekParity(date))}"
+    fun of(
+        date: LocalDate,
+        anchor: WeekAnchor,
+    ): String = "${dayName(date.dayOfWeek)} • ${parityName(ScheduleQuery.weekParity(date, anchor))}"
 
     /**
      * Чип даты: «15 июня • 2026». Локаль фиксируем русскую — на устройстве с

@@ -35,6 +35,7 @@ import com.virtualshape.gradule.data.ScheduleTarget
 import com.virtualshape.gradule.data.SqliteScheduleStore
 import com.virtualshape.gradule.domain.schedule.DayLabel
 import com.virtualshape.gradule.domain.schedule.ScheduleEntry
+import com.virtualshape.gradule.domain.schedule.WeekAnchor
 import com.virtualshape.gradule.ui.theme.Bg
 import com.virtualshape.gradule.ui.theme.Card
 import com.virtualshape.gradule.ui.theme.GraDuleTheme
@@ -62,11 +63,14 @@ enum class Tab(
 fun GraDuleApp() {
     var dark by rememberSaveable { mutableStateOf(false) }
     var scheduleRefresh by remember { mutableStateOf(0) }
+    // Якорь недели с сервера; до ответа держим ISO-фолбэк, чтобы подпись дока и фильтр не расходились.
+    var anchor by remember { mutableStateOf<WeekAnchor?>(null) }
     // Старт — экран дизайна с парами, а не заглушка.
     var tabName by rememberSaveable { mutableStateOf(Tab.Schedule.name) }
     var dateText by rememberSaveable { mutableStateOf(LocalDate.now().toString()) }
     val tab = Tab.valueOf(tabName)
     val date = LocalDate.parse(dateText)
+    val weekAnchor = anchor ?: WeekAnchor.guessed(LocalDate.now())
 
     GraDuleTheme(darkTheme = dark) {
         val drawerState = rememberDrawerState(DrawerValue.Closed)
@@ -105,7 +109,7 @@ fun GraDuleApp() {
                 },
                 bottomBar = {
                     GraDuleNavBar(
-                        caption = DayLabel.of(date),
+                        caption = DayLabel.of(date, weekAnchor),
                         tabs = Tab.entries,
                         selected = tab,
                         onSelect = { tabName = it.name },
@@ -115,7 +119,7 @@ fun GraDuleApp() {
                 Box(modifier = Modifier.fillMaxSize().padding(pad)) {
                     when (tab) {
                         Tab.Schedule -> {
-                            ScheduleTab(date, scheduleRefresh)
+                            ScheduleTab(date, scheduleRefresh) { anchor = it }
                         }
 
                         Tab.Grades -> {
@@ -138,15 +142,25 @@ fun GraDuleApp() {
 private fun ScheduleTab(
     date: LocalDate,
     refreshKey: Int,
+    onAnchor: (WeekAnchor) -> Unit,
 ) {
     val context = LocalContext.current
     val store = remember { SqliteScheduleStore(context.applicationContext) }
     val repository = remember { ScheduleRepository(OkHttpHttpGet(), store) }
     var state by remember { mutableStateOf<SyncUiState<List<ScheduleEntry>>>(SyncUiState.Loading) }
+    var anchor by remember { mutableStateOf(WeekAnchor.guessed(LocalDate.now())) }
     LaunchedEffect(refreshKey) {
         state =
             withContext(Dispatchers.IO) {
                 val cached = store.entries()
+                // Якорь недели спросим с сервера даже если расписание не загрузилось: подпись дня без него врёт.
+                anchor =
+                    try {
+                        repository.weekAnchor(LocalDate.now())
+                    } catch (e: Exception) {
+                        WeekAnchor.guessed(LocalDate.now())
+                    }
+                onAnchor(anchor)
                 try {
                     when (repository.load(ScheduleTarget.DEFAULT)) {
                         is GroupLoad.Loaded -> {
@@ -174,7 +188,7 @@ private fun ScheduleTab(
                 }
             }
     }
-    DayScreen(state = state, date = date)
+    DayScreen(state = state, date = date, anchor = anchor)
 }
 
 @Composable

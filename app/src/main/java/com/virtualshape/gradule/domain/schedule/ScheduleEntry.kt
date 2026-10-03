@@ -2,7 +2,7 @@ package com.virtualshape.gradule.domain.schedule
 
 import java.time.DayOfWeek
 import java.time.LocalDate
-import java.time.temporal.WeekFields
+import java.time.temporal.ChronoUnit
 
 /** Откуда запись: сервер расписания или пользовательский слой. */
 enum class Source { SERVER, LOCAL }
@@ -63,35 +63,43 @@ data class ScheduleEntry(
 /** Выборка записей на дату. */
 object ScheduleQuery {
     /**
-     * Записи на [date]: ONE_OFF — только в свою дату, WEEKLY — по дню недели и чётности.
-     * Порядок: начало занятия, затем сокращение предмета первой подгруппы.
+     * Записи на [date]: ONE_OFF — только в свою дату, WEEKLY — по дню недели и чётности недели,
+     * которую задаёт [anchor] (серверный /APIv1/week). Порядок: начало занятия, затем сокращение
+     * предмета первой подгруппы.
      */
     fun entriesOn(
         date: LocalDate,
         entries: List<ScheduleEntry>,
+        anchor: WeekAnchor,
     ): List<ScheduleEntry> =
         entries
-            .filter { matches(it, date) }
+            .filter { matches(it, date, anchor) }
             .sortedWith(compareBy({ it.timeslot.startMinute }, { it.subgroups.firstOrNull()?.subjectAbbr ?: "" }))
 
     private fun matches(
         entry: ScheduleEntry,
         date: LocalDate,
+        anchor: WeekAnchor,
     ): Boolean {
         val once = entry.onceDate
         if (once != null) return once == date
         if (entry.timeslot.day != date.dayOfWeek) return false
         return when (entry.timeslot.parity) {
             Parity.FULL -> true
-            else -> entry.timeslot.parity == weekParity(date)
+            else -> entry.timeslot.parity == weekParity(date, anchor)
         }
     }
 
     /**
-     * Чётность недели по дате.
-     * ponytail: ГИПОТЕЗА (Q4, grammar-note.md) — нечётный ISO-номер недели = UPPER, чётный = LOWER.
-     * Якорь не подтверждён источником (серверный `/APIv1/week` отдаёт `{"week":0}`); при появлении
-     // W-базы e00s02 заменить тело на сверку с ней, сигнатуру оставить.
+     * Чётность недели [date] относительно якоря: через нечётное число недель чётность переворачивается.
+     * Считаем по понедельникам, поэтому переход через новый год счёт не ломает.
      */
-    fun weekParity(date: LocalDate): Parity = if (date.get(WeekFields.ISO.weekOfWeekBasedYear()) % 2 == 1) Parity.UPPER else Parity.LOWER
+    fun weekParity(
+        date: LocalDate,
+        anchor: WeekAnchor,
+    ): Parity {
+        val weeks = ChronoUnit.WEEKS.between(anchor.date.with(DayOfWeek.MONDAY), date.with(DayOfWeek.MONDAY))
+        val parity = anchor.parity
+        return if (weeks % 2 == 0L) parity else if (parity == Parity.UPPER) Parity.LOWER else Parity.UPPER
+    }
 }
